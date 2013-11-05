@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131105044153) do
+ActiveRecord::Schema.define(version: 20131105052152) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,46 @@ ActiveRecord::Schema.define(version: 20131105044153) do
     t.string   "conference"
     t.string   "division"
     t.string   "nba_stats_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "player_box_scores", force: true do |t|
+    t.integer  "nba_player_id"
+    t.integer  "nba_matchup_id"
+    t.string   "location"
+    t.integer  "seconds"
+    t.integer  "field_goals_made"
+    t.integer  "field_goals_attempted"
+    t.integer  "three_pointers_made"
+    t.integer  "three_pointers_attempted"
+    t.integer  "free_throws_made"
+    t.integer  "free_throws_attempted"
+    t.integer  "offensive_rebounds"
+    t.integer  "defensive_rebounds"
+    t.integer  "assists"
+    t.integer  "steals"
+    t.integer  "blocks"
+    t.integer  "turnovers"
+    t.integer  "personal_fouls"
+    t.integer  "points"
+    t.integer  "offensive_rating"
+    t.integer  "defensive_rating"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "team_box_scores", force: true do |t|
+    t.integer  "nba_matchup_id"
+    t.integer  "nba_team_id"
+    t.string   "location"
+    t.integer  "q1_pts"
+    t.integer  "q2_pts"
+    t.integer  "q3_pts"
+    t.integer  "q4_pts"
+    t.integer  "score"
+    t.string   "result"
+    t.integer  "pace"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
