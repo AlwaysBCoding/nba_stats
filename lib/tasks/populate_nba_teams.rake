@@ -1,8 +1,8 @@
 namespace :seed_data do
   desc "Populates DB with NBA Teams"
   task :populate_nba_teams => :environment do
-    NbaTeam.destroy_all
-    puts "Destroying all NBA Teams..."
+    # NbaTeam.destroy_all
+    # puts "Destroying all NBA Teams..."
 
     NbaTeam.create! city: "atlanta", name: "hawks", abbr: "atl", conference: "eastern", division: "southeast", nba_stats_id: "1610612737", display_name: "Atlanta Hawks"
     NbaTeam.create! city: "boston", name: "celtics", abbr: "bos", conference: "eastern", division: "atlantic", nba_stats_id: "1610612738", display_name: "Boston Celtics"
@@ -35,7 +35,7 @@ namespace :seed_data do
     NbaTeam.create! city: "oklahoma city", name: "thunder", abbr: "okc", conference: "western", division: "northwest", nba_stats_id: "1610612760", display_name: "Oklahoma City Thunder"
 
     NbaTeam.create! city: "phoenix", name: "suns", abbr: "phx", conference: "western", division: "pacific", nba_stats_id: "1610612756", display_name: "Phoenix Suns"
-    NbaTeam.create! city: "portland", name: "trailblazers", abbr: "por", conference: "western", division: "northwest", nba_stats_id: "1610612757", display_name: "Portland Trailblazers"
+    NbaTeam.create! city: "portland", name: "trailblazers", abbr: "por", conference: "western", division: "northwest", nba_stats_id: "1610612757", display_name: "Portland Trail Blazers"
     NbaTeam.create! city: "sacramento", name: "kings", abbr: "sac", conference: "western", division: "pacific", nba_stats_id: "1610612758", display_name: "Sacramento Kings"
     NbaTeam.create! city: "san antonio", name: "spurs", abbr: "sas", conference: "western", division: "southwest", nba_stats_id: "1610612759", display_name: "San Antonio Spurs"
     NbaTeam.create! city: "utah", name: "jazz", abbr: "uta", conference: "western", division: "northwest", nba_stats_id: "1610612762", display_name: "Utah Jazz"
