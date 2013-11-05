@@ -10,6 +10,7 @@ gem "pg"
 gem "pry-rails"
 
 # FEATURES
+gem "watir-webdriver"
 gem "nokogiri"
 
 # Use SCSS for stylesheets
