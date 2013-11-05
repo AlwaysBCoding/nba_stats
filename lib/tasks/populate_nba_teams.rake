@@ -6,7 +6,7 @@ namespace :seed_data do
 
     NbaTeam.create! city: "atlanta", name: "hawks", abbr: "atl", conference: "eastern", division: "southeast", nba_stats_id: "1610612737", display_name: "Atlanta Hawks"
     NbaTeam.create! city: "boston", name: "celtics", abbr: "bos", conference: "eastern", division: "atlantic", nba_stats_id: "1610612738", display_name: "Boston Celtics"
-    NbaTeam.create! city: "brookyln", name: "nets", abbr: "bkn", conference: "eastern", division: "atlantic", nba_stats_id: "1610612751", display_name: "Brooklyn Nets"
+    NbaTeam.create! city: "brookyln", name: "nets", abbr: "brk", conference: "eastern", division: "atlantic", nba_stats_id: "1610612751", display_name: "Brooklyn Nets"
     NbaTeam.create! city: "charlotte", name: "bobcats", abbr: "cha", conference: "eastern", division: "southeast", nba_stats_id: "1610612766", display_name: "Charlotte Bobcats"
     NbaTeam.create! city: "chicago", name: "bulls", abbr: "chi", conference: "eastern", division: "central", nba_stats_id: "1610612741", display_name: "Chicago Bulls"
 
@@ -18,7 +18,7 @@ namespace :seed_data do
 
     NbaTeam.create! city: "new york", name: "knicks", abbr: "nyk", conference: "eastern", division: "atlantic", nba_stats_id: "1610612752", display_name: "New York Knicks"
     NbaTeam.create! city: "orlando", name: "magic", abbr: "orl", conference: "eastern", division: "southeast", nba_stats_id: "1610612753", display_name: "Orlando Magic"
-    NbaTeam.create! city: "philadelphia", name: "76ers", abbr:" phi", conference: "eastern", division: "atlantic", nba_stats_id: "1610612755", display_name: "Philadelphia 76ers"
+    NbaTeam.create! city: "philadelphia", name: "76ers", abbr: "phi", conference: "eastern", division: "atlantic", nba_stats_id: "1610612755", display_name: "Philadelphia 76ers"
     NbaTeam.create! city: "toronto", name: "raptors", abbr: "tor", conference: "eastern", division: "atlantic", nba_stats_id: "1610612761", display_name: "Toronto Raptors"
     NbaTeam.create! city: "washington", name: "wizards", abbr: "was", conference: "eastern", division: "southeast", nba_stats_id: "1610612764", display_name: "Washington Wizards"
 
@@ -34,7 +34,7 @@ namespace :seed_data do
     NbaTeam.create! city: "new orleans", name: "pelicans", abbr: "nop", conference: "western", division: "southwest", nba_stats_id: "1610612740", display_name: "New Orleans Pelicans"
     NbaTeam.create! city: "oklahoma city", name: "thunder", abbr: "okc", conference: "western", division: "northwest", nba_stats_id: "1610612760", display_name: "Oklahoma City Thunder"
 
-    NbaTeam.create! city: "phoenix", name: "suns", abbr: "phx", conference: "western", division: "pacific", nba_stats_id: "1610612756", display_name: "Phoenix Suns"
+    NbaTeam.create! city: "phoenix", name: "suns", abbr: "pho", conference: "western", division: "pacific", nba_stats_id: "1610612756", display_name: "Phoenix Suns"
     NbaTeam.create! city: "portland", name: "trailblazers", abbr: "por", conference: "western", division: "northwest", nba_stats_id: "1610612757", display_name: "Portland Trail Blazers"
     NbaTeam.create! city: "sacramento", name: "kings", abbr: "sac", conference: "western", division: "pacific", nba_stats_id: "1610612758", display_name: "Sacramento Kings"
     NbaTeam.create! city: "san antonio", name: "spurs", abbr: "sas", conference: "western", division: "southwest", nba_stats_id: "1610612759", display_name: "San Antonio Spurs"

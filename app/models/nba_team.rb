@@ -15,4 +15,9 @@ class NbaTeam < ActiveRecord::Base
     nba_players
   end
 
+# QUERY METHODS
+  def missing_box_scores
+    nba_matchups - team_box_scores.map(&:nba_matchup)
+  end
+
 end

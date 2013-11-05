@@ -6,4 +6,9 @@ class NbaMatchup < ActiveRecord::Base
   has_many :team_box_scores
   has_many :player_box_scores
 
+# SCOPES
+  scope :matchups_for_team, ->(abbr) {
+    where("home_team_id = ? OR away_team_id = ?", NbaTeam.find_by_abbr(abbr).id, NbaTeam.find_by_abbr(abbr).id)
+  }
+
 end
