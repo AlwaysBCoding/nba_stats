@@ -22,13 +22,13 @@ class CreatePlayerBoxScores < ActiveRecord::Migration
       t.integer :points
       t.decimal :true_shooting_percentage, precision: 4, scale: 3
       t.decimal :effective_field_goal_percentage, precision: 4, scale: 3
-      t.decimal :offensive_rebound_percentage, precision: 3, scale: 1
-      t.decimal :defensive_rebound_percentage, precision: 3, scale: 1
-      t.decimal :assist_percentage, precision: 3, scale: 1
-      t.decimal :steal_percentage, precision: 3, scale: 1
-      t.decimal :block_percentage, precision: 3, scale: 1
-      t.decimal :turnover_percentage, precision: 3, scale: 1
-      t.decimal :usage_percentage, precision: 3, scale: 1
+      t.decimal :offensive_rebound_percentage, precision: 4, scale: 1
+      t.decimal :defensive_rebound_percentage, precision: 4, scale: 1
+      t.decimal :assist_percentage, precision: 4, scale: 1
+      t.decimal :steal_percentage, precision: 4, scale: 1
+      t.decimal :block_percentage, precision: 4, scale: 1
+      t.decimal :turnover_percentage, precision: 4, scale: 1
+      t.decimal :usage_percentage, precision: 4, scale: 1
       t.decimal :offensive_rating, precision: 4, scale: 1
       t.decimal :defensive_rating, precision: 4, scale: 1
       t.integer :plus_minus

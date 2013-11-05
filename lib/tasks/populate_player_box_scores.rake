@@ -4,10 +4,13 @@ namespace :seed_data do
     require "open-uri"
 
     NbaTeam.all.each do |team|
+      puts "========================"
       puts "STARTING #{team.display_name.upcase}..."
+      puts "========================"
 
       team.missing_player_box_scores.each do |matchup|
         puts "SEEKING MATCHUP #{matchup.basketball_reference_id} : #{matchup.gamedate}"
+        puts "------------------------"
 
         url = "http://www.basketball-reference.com/boxscores/#{matchup.basketball_reference_id}.html"
         doc = Nokogiri::HTML(open(url))
@@ -91,9 +94,8 @@ namespace :seed_data do
           puts "CREATED BOX SCORE FOR #{matchup.gamedate} : #{player.display_name}"
         end
 
-        puts "========================"
         puts "COMPLETED STAT LINES FOR #{team.abbr.upcase}: #{matchup.gamedate}"
-        puts "========================"
+        puts "************************"
 
       end
     end
