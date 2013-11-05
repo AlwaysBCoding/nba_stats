@@ -1,13 +1,12 @@
 namespace :seed_data do
   desc "Populates DB with the matchup data for each matchup"
   task :populate_nba_matchups_data => :environment do
-    browser = Watir::Browser.new :ff
+    require "open-uri"
 
     empty_matchups = NbaMatchup.where("home_team_id IS NULL OR away_team_id IS NULL")
     empty_matchups.each do |matchup|
       url = "http://www.basketball-reference.com/boxscores/#{matchup.basketball_reference_id}.html"
-      browser.goto(url)
-      doc = Nokogiri::HTML.parse(browser.html)
+      doc = Nokogiri::HTML(open(url))
 
       matchup_string = doc.at_css("h1").text
 
@@ -21,7 +20,6 @@ namespace :seed_data do
     end
 
     puts "SHUTTING DOWN..."
-    browser.close
 
   end
 end
