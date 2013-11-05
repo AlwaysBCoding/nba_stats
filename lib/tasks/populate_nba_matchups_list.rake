@@ -1,6 +1,6 @@
 namespace :seed_data do
-  desc "Populates DB with NBA Matchups"
-  task :populate_nba_matchups => :environment do
+  desc "Populates DB with a list of all completed NBA Matchups"
+  task :populate_nba_matchups_list => :environment do
     browser = Watir::Browser.new :ff
 
     dates = [

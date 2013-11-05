@@ -11,4 +11,8 @@ class NbaTeam < ActiveRecord::Base
     home_matchups + away_matchups
   end
 
+  def roster
+    nba_players
+  end
+
 end

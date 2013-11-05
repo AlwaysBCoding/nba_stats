@@ -7,6 +7,7 @@ class CreateNbaTeams < ActiveRecord::Migration
       t.string :conference
       t.string :division
       t.string :nba_stats_id
+      t.string :display_name
       t.timestamps
     end
   end

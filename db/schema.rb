@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20131105052152) do
     t.string   "conference"
     t.string   "division"
     t.string   "nba_stats_id"
+    t.string   "display_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

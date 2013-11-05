@@ -3,10 +3,10 @@ namespace :seed_data do
   task :populate_nba_players => :environment do
     browser = Watir::Browser.new :ff
 
-    NbaPlayer.destroy_all
-    puts "Destroying all NBA Players..."
+    teams = NbaTeam.all.select { |team| team.roster.count == 0 }
+    puts "Teams without Rosters: #{teams.map(&:abbr).join(',')}"
 
-    NbaTeam.all.each do |team|
+    teams.each do |team|
       url = "http://stats.nba.com/teamProfile.html?TeamID=#{team.nba_stats_id}"
       browser.goto(url)
       doc = Nokogiri::HTML.parse(browser.html)
