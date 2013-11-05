@@ -4,7 +4,7 @@
 3. Populate NBA Matchups List - `rake seed_data:populate_nba_matchups_list`
 4. Populate NBA Matchups Data - `rake seed_data:populate_nba_matchups_data`
 5. Populate Team Box Scores - `rake seed_data:populate_team_box_scores`
-6. Populate Player Box Scores
+6. Populate Player Box Scores - `rake seed_data:populate_player_box_scores`
 
 # Notes
 1. Brooklyn is abbreviated "BRK" on basketball-reference.com but I've seen it as BKN in other places
