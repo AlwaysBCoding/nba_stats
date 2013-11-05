@@ -5,6 +5,7 @@ class NbaTeam < ActiveRecord::Base
   has_many :home_matchups, class_name: "NbaMatchup", foreign_key: "home_team_id"
   has_many :away_matchups, class_name: "NbaMatchup", foreign_key: "away_team_id"
   has_many :team_box_scores
+  has_many :player_box_scores
 
 # CONVENIENCE METHODS
   def nba_matchups
@@ -16,8 +17,14 @@ class NbaTeam < ActiveRecord::Base
   end
 
 # QUERY METHODS
-  def missing_box_scores
+  def missing_team_box_scores
     nba_matchups - team_box_scores.map(&:nba_matchup)
+  end
+
+  # This query is really inefficient because it's loading every single player_box_score into memory to find the ones that haven't been added
+  # there is a much better way to do this with SQL instead of lading all the records into memory, i just dont know the arel for it
+  def missing_player_box_scores
+    nba_matchups - player_box_scores.map(&:nba_matchup)
   end
 
 end

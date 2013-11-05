@@ -10,3 +10,4 @@
 1. Brooklyn is abbreviated "BRK" on basketball-reference.com but I've seen it as BKN in other places
 2. Phoenix is abbreviated "PHO" on basketball-reference.com but I've seen it as PHX other places
 3. I am currently aggregating ot_points together if a game does go into ot since nothing meaningful can be gained from making that information more granular. You can probably calculate the length of a game by checking the total minutes played, not sure if I need to persist that data on the matchup itself, even though that seems like it would be the logical place for it.
+4. Trades are going to be an absolute clusterfuck, I'm going to persist the team_id on each player box score

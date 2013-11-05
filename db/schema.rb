@@ -56,9 +56,10 @@ ActiveRecord::Schema.define(version: 20131105052152) do
 
   create_table "player_box_scores", force: true do |t|
     t.integer  "nba_player_id"
+    t.integer  "nba_team_id"
     t.integer  "nba_matchup_id"
     t.string   "location"
-    t.integer  "seconds"
+    t.integer  "seconds_played"
     t.integer  "field_goals_made"
     t.integer  "field_goals_attempted"
     t.integer  "three_pointers_made"
@@ -73,8 +74,18 @@ ActiveRecord::Schema.define(version: 20131105052152) do
     t.integer  "turnovers"
     t.integer  "personal_fouls"
     t.integer  "points"
-    t.integer  "offensive_rating"
-    t.integer  "defensive_rating"
+    t.decimal  "true_shooting_percentage",        precision: 4, scale: 3
+    t.decimal  "effective_field_goal_percentage", precision: 4, scale: 3
+    t.decimal  "offensive_rebound_percentage",    precision: 4, scale: 3
+    t.decimal  "defensive_rebound_percentage",    precision: 4, scale: 3
+    t.decimal  "assist_percentage",               precision: 3, scale: 1
+    t.decimal  "steal_percentage",                precision: 3, scale: 1
+    t.decimal  "block_percentage",                precision: 3, scale: 1
+    t.decimal  "turnover_percentage",             precision: 3, scale: 1
+    t.decimal  "usage_percentage",                precision: 3, scale: 1
+    t.decimal  "offensive_rating",                precision: 4, scale: 1
+    t.decimal  "defensive_rating",                precision: 4, scale: 1
+    t.integer  "plus_minus"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

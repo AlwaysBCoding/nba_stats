@@ -4,7 +4,7 @@ namespace :seed_data do
     require "open-uri"
 
     NbaTeam.all.each do |team|
-      team.missing_box_scores.each do |matchup|
+      team.missing_team_box_scores.each do |matchup|
         url = "http://www.basketball-reference.com/boxscores/#{matchup.basketball_reference_id}.html"
         doc = Nokogiri::HTML(open(url))
 
