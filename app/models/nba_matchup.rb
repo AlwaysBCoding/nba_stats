@@ -11,4 +11,10 @@ class NbaMatchup < ActiveRecord::Base
     where("home_team_id = ? OR away_team_id = ?", NbaTeam.find_by_abbr(abbr).id, NbaTeam.find_by_abbr(abbr).id)
   }
 
+# QUERY METHODS
+  def opponent(team)
+    return NbaTeam.find(away_team_id) if team.id == home_team_id
+    return NbaTeam.find(home_team_id) if team.id == away_team_id
+  end
+
 end

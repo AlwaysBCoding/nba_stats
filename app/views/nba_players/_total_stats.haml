@@ -1,0 +1,51 @@
+.row.clearfix.stats-header
+  .cell
+    %span MIN
+  .cell
+    %span PTS
+  .cell
+    %span FG%
+  .cell
+    %span 3PT%
+  .cell
+    %span FT%
+  .cell
+    %span ORB
+  .cell
+    %span DRB
+  .cell
+    %span TRB
+  .cell
+    %span AST
+  .cell
+    %span STL
+  .cell
+    %span BLK
+  .cell
+    %span TOV
+
+.row.clearfix.stats-data
+  .cell
+    %span= player.minutes_per(:game).round(1)
+  .cell
+    %span= player.points_per(:game).round(1)
+  .cell
+    %span= number_to_percentage(player.sum_stat_percentage(:field_goals_made, :field_goals_attempted) * 100, precision: 1)
+  .cell
+    %span= number_to_percentage(player.sum_stat_percentage(:three_pointers_made, :three_pointers_attempted) * 100, precision: 1)
+  .cell
+    %span= number_to_percentage(player.sum_stat_percentage(:free_throws_made, :free_throws_attempted) * 100, precision: 1)
+  .cell
+    %span= player.offensive_rebounds_per(:game).round(1)
+  .cell
+    %span= player.defensive_rebounds_per(:game).round(1)
+  .cell
+    %span= player.total_rebounds_per(:game).round(1)
+  .cell
+    %span= player.assists_per(:game).round(1)
+  .cell
+    %span= player.steals_per(:game).round(1)
+  .cell
+    %span= player.blocks_per(:game).round(1)
+  .cell
+    %span= player.turnovers_per(:game).round(1)

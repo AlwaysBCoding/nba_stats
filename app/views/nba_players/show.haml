@@ -1,3 +1,13 @@
 %h1 PLAYER : SHOW
 
 %h1= @player.display_name
+
+.total-stats
+  = render partial: "total_stats", locals: {player: @player}
+
+.box-scores
+  %h2 Box Scores
+  - player_box_scores = @player.player_box_scores.sort { |bx1, bx2| bx2.gamedate <=> bx1.gamedate }
+  - player_box_scores.each do |player_box_score|
+    .box_score
+      = link_to player_box_score.display_name, player_box_score_url(player_box_score)
