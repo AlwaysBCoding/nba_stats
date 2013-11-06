@@ -9,6 +9,17 @@ class TeamBoxScore < ActiveRecord::Base
     joins(:nba_matchup).where(nba_team: NbaTeam.find_by_abbr(abbr)).order("gamedate DESC")
   }
 
+# QUERY METHODS
+  def opponent
+    return NbaMatchup.find(nba_matchup_id).away_team if location == "home"
+    return NbaMatchup.find(nba_matchup_id).home_team if location == "away"
+  end
+
+  def opponent_box_score
+    return TeamBoxScore.where(nba_matchup: nba_matchup, location: "away").first if location == "home"
+    return TeamBoxScore.where(nba_matchup: nba_matchup, location: "home").first if location == "away"
+  end
+
 # DELEGATIONS
   def gamedate
     nba_matchup.gamedate
