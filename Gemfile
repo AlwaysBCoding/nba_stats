@@ -17,10 +17,6 @@ ruby '2.0.0'
     gem "binding_of_caller"
   end
 
-# WEB SCRAPING
-  gem "watir-webdriver"
-  gem "nokogiri"
-
 # ASSETS :CONFIGURATION
   gem 'sass-rails', '~> 4.0.0'
   gem 'uglifier', '>= 1.3.0'
@@ -46,9 +42,17 @@ ruby '2.0.0'
     gem "shoulda-matchers"
   end
 
+# WEB SCRAPING
+  gem "watir-webdriver"
+  gem "nokogiri"
+
+# API BUILDER
+  gem "active_model_serializers"
+
 # DEPLOYMENT
   gem 'rails_12factor', group: :production
 
+# ======================================
 # OTHER THINGS THAT I DONT WANT TO TOUCH
 # ======================================
 

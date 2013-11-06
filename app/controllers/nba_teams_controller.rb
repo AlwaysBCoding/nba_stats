@@ -6,6 +6,16 @@ class NbaTeamsController < ApplicationController
 
   def show
     @team = NbaTeam.find_by_abbr(params[:abbr].downcase)
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @team }
+    end
+
+  end
+
+  def default_serializer_options
+    { root: false }
   end
 
 end
