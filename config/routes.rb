@@ -5,7 +5,7 @@ NbaStats::Application.routes.draw do
   get "/teams" => "nba_teams#index", as: :teams
   get "/team/:abbr" => "nba_teams#show", as: :team
 
-  get "/players/:id" => "nba_players#show", as: :player
+  get "/player/:id" => "nba_players#show", as: :player
 
   get "/nba-matchups/:id" => "nba_matchups#show", as: :nba_matchup
 end
