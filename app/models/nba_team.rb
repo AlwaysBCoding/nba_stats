@@ -21,6 +21,10 @@ class NbaTeam < ActiveRecord::Base
     nba_matchups - team_box_scores.map(&:nba_matchup)
   end
 
+  def box_scores_from_matchup(matchup)
+    PlayerBoxScore.where(nba_team_id: self.id, nba_matchup_id: matchup.id)
+  end
+
   # This query is really inefficient because it's loading every single player_box_score into memory to find the ones that haven't been added
   # there is a much better way to do this with SQL instead of lading all the records into memory, i just dont know the arel for it
   def missing_player_box_scores
