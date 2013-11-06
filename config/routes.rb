@@ -7,5 +7,5 @@ NbaStats::Application.routes.draw do
 
   get "/player/:id" => "nba_players#show", as: :player
 
-  get "/nba-matchups/:id" => "nba_matchups#show", as: :nba_matchup
+  get "/nba-matchup/:id" => "nba_matchups#show", as: :nba_matchup
 end
