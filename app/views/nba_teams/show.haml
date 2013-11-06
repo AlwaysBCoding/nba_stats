@@ -1,10 +1,13 @@
-%h1 TEAM : SHOW
+%ul.breadcrumbs
+  %li
+    = link_to "nba teams", teams_url
+  %li.current
+    = link_to @team.display_name, team_url(@team)
 
 %h1= @team.display_name
 
-%ul.roster
+%ul.pricing-table
+  %li.title Roster
   - @team.roster.each do |player|
-    %li
+    %li.bullet-item
       =link_to player.display_name, player_url(player)
-
-= link_to "BACK TO TEAMS", teams_url

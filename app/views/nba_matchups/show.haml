@@ -1,15 +1,19 @@
-%h1 NBA MATCHUP : SHOW
+%ul.breadcrumbs
+  %li
+    = link_to "nba teams", teams_url
+  - if @source_player.present?
+    %li
+      = link_to @source_player.nba_team.display_name, team_url(@source_player.nba_team)
+    %li
+      = link_to @source_player.display_name, player_url(@source_player), class: "current"
+  %li.current
+    = link_to @matchup.display_name, nba_matchup_url(@matchup)
 
-.team-box-scores
+.team-box-scores.row.panel
   = render partial: "team_box_score", locals: {away_team_box_score: @away_team_box_score, home_team_box_score: @home_team_box_score}
 
-.players-box-score.away-team
-  = render partial: "players_box_score", locals: {box_scores: @away_team_player_box_scores}
+.players-box-score-container.away-team
+  = render partial: "players_box_score", locals: {box_scores: @away_team_player_box_scores, nba_team: @matchup.away_team}
 
-.players-box-score.home-team
-  = render partial: "players_box_score", locals: {box_scores: @home_team_player_box_scores}
-
-- if @source_player.present?
-  = link_to "BACK TO #{@source_player.display_name}", player_url(@source_player)
-- else
-  = link_to "BACK TO TEAMS", teams_url
+.players-box-score-container.home-team
+  = render partial: "players_box_score", locals: {box_scores: @home_team_player_box_scores, nba_team: @matchup.home_team}

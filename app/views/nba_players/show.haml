@@ -1,8 +1,14 @@
-%h1 PLAYER : SHOW
+%ul.breadcrumbs
+  %li
+    = link_to "nba teams", teams_url
+  %li
+    = link_to @player.nba_team.display_name, team_url(@player.nba_team)
+  %li.current
+    = link_to @player.display_name, player_url(@player), class: "current"
 
 %h1= @player.display_name
 
-.total-stats
+.total-stats-container
   = render partial: "total_stats", locals: {player: @player}
 
 .box-scores
@@ -11,5 +17,3 @@
   - player_box_scores.each do |player_box_score|
     .box_score
       = link_to player_box_score.display_name, nba_matchup_url(player_box_score.nba_matchup, source_player: @player.id)
-
-= link_to "BACK TO TEAM", team_url(@player.nba_team)

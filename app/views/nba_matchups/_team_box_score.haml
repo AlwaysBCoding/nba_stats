@@ -1,10 +1,17 @@
-.team-box-score.away-team
-  %h2= away_team_box_score.nba_team.display_name
-  %span.score= away_team_box_score.score
+.row.team-names
+  .large-5.columns
+    %h3= away_team_box_score.nba_team.display_name
+  .large-2.columns
+    %span.at_sign @
+  .large-5.columns
+    %h3= home_team_box_score.nba_team.display_name
 
-.team-box-score.home-team
-  %h2= home_team_box_score.nba_team.display_name
-  %span.score= home_team_box_score.score
+.row.team-scores
+  .large-5.columns
+    %h4.score= away_team_box_score.score
+  .large-5.columns
+    %h4.score= home_team_box_score.score
 
-.pace.clearfix
-  %h3= "Pace: #{away_team_box_score.pace.to_f}"
+.row.pace
+  .large-12.large-centered.columns
+    %p.pace= "Pace: #{away_team_box_score.pace.to_f}"

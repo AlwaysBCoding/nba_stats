@@ -1,72 +1,60 @@
-.row.clearfix.box-score-header
-  .cell.player-name
-    %span Player Name
-  .cell
-    %span MP
-  .cell
-    %span FGM
-  .cell
-    %span FGA
-  .cell
-    %span 3PM
-  .cell
-    %span 3PA
-  .cell
-    %span FTM
-  .cell
-    %span FTA
-  .cell
-    %span ORB
-  .cell
-    %span DRB
-  .cell
-    %span TRB
-  .cell
-    %span AST
-  .cell
-    %span STL
-  .cell
-    %span BLK
-  .cell
-    %span TOV
-  .cell
-    %span PF
-  .cell
-    %span PTS
+%table.players-box-score
+  %thead
+    %tr
+      %th{colspan: 17}= nba_team.display_name
+    %tr
+      %th.player-name Player Name
+      %th MP
+      %th FGM
+      %th FGA
+      %th 3PM
+      %th 3PA
+      %th FTM
+      %th FTA
+      %th ORB
+      %th DRB
+      %th TRB
+      %th AST
+      %th STL
+      %th BLK
+      %th TOV
+      %th PF
+      %th.points PTS
 
-- box_scores.each do |box_score|
-  .row.clearfix.box-score-data
-    .cell.player-name
-      %span= box_score.nba_player.display_name
-    .cell
-      %span= "#{box_score.seconds_played / 60}:#{(box_score.seconds_played % 60).to_s.rjust(2, '0')}"
-    .cell
-      %span= box_score.field_goals_made
-    .cell
-      %span= box_score.field_goals_attempted
-    .cell
-      %span= box_score.three_pointers_made
-    .cell
-      %span= box_score.three_pointers_attempted
-    .cell
-      %span= box_score.free_throws_made
-    .cell
-      %span= box_score.free_throws_attempted
-    .cell
-      %span= box_score.offensive_rebounds
-    .cell
-      %span= box_score.defensive_rebounds
-    .cell
-      %span= box_score.offensive_rebounds + box_score.defensive_rebounds
-    .cell
-      %span= box_score.assists
-    .cell
-      %span= box_score.steals
-    .cell
-      %span= box_score.blocks
-    .cell
-      %span= box_score.turnovers
-    .cell
-      %span= box_score.personal_fouls
-    .cell
-      %span= box_score.points
+  %tbody
+    - box_scores.each do |box_score|
+      %tr.box-score-data
+        %td.player-name
+          = box_score.nba_player.display_name
+        %td
+          = "#{box_score.seconds_played / 60}:#{(box_score.seconds_played % 60).to_s.rjust(2, '0')}"
+        %td
+          = box_score.field_goals_made
+        %td
+          = box_score.field_goals_attempted
+        %td
+          = box_score.three_pointers_made
+        %td
+          = box_score.three_pointers_attempted
+        %td
+          = box_score.free_throws_made
+        %td
+          = box_score.free_throws_attempted
+        %td
+          = box_score.offensive_rebounds
+        %td
+          = box_score.defensive_rebounds
+        %td
+          = box_score.offensive_rebounds + box_score.defensive_rebounds
+        %td
+          = box_score.assists
+        %td
+          = box_score.steals
+        %td
+          = box_score.blocks
+        %td
+          = box_score.turnovers
+        %td
+          = box_score.personal_fouls
+        %td
+          = box_score.points

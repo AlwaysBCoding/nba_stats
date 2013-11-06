@@ -1,51 +1,42 @@
-.row.clearfix.stats-header
-  .cell
-    %span MIN
-  .cell
-    %span PTS
-  .cell
-    %span FG%
-  .cell
-    %span 3PT%
-  .cell
-    %span FT%
-  .cell
-    %span ORB
-  .cell
-    %span DRB
-  .cell
-    %span TRB
-  .cell
-    %span AST
-  .cell
-    %span STL
-  .cell
-    %span BLK
-  .cell
-    %span TOV
+%table.total-stats
+  %thead
+    %tr.total-stats-header
+      %th MIN
+      %th PTS
+      %th FG%
+      %th 3PT%
+      %th FT%
+      %th ORB
+      %th DRB
+      %th TRB
+      %th AST
+      %th STL
+      %th BLK
+      %th TOV
 
-.row.clearfix.stats-data
-  .cell
-    %span= player.minutes_per(:game).round(1)
-  .cell
-    %span= player.points_per(:game).round(1)
-  .cell
-    %span= number_to_percentage(player.sum_stat_percentage(:field_goals_made, :field_goals_attempted) * 100, precision: 1)
-  .cell
-    %span= number_to_percentage(player.sum_stat_percentage(:three_pointers_made, :three_pointers_attempted) * 100, precision: 1)
-  .cell
-    %span= number_to_percentage(player.sum_stat_percentage(:free_throws_made, :free_throws_attempted) * 100, precision: 1)
-  .cell
-    %span= player.offensive_rebounds_per(:game).round(1)
-  .cell
-    %span= player.defensive_rebounds_per(:game).round(1)
-  .cell
-    %span= player.total_rebounds_per(:game).round(1)
-  .cell
-    %span= player.assists_per(:game).round(1)
-  .cell
-    %span= player.steals_per(:game).round(1)
-  .cell
-    %span= player.blocks_per(:game).round(1)
-  .cell
-    %span= player.turnovers_per(:game).round(1)
+  %tbody
+    %tr.total-stats-data
+      %td
+        = player.minutes_per(:game).round(1)
+      %td
+        = player.points_per(:game).round(1)
+      %td
+        = number_to_percentage(player.sum_stat_percentage(:field_goals_made, :field_goals_attempted) * 100, precision: 1)
+      %td
+        = number_to_percentage(player.sum_stat_percentage(:three_pointers_made, :three_pointers_attempted) * 100, precision: 1)
+      %td
+        = number_to_percentage(player.sum_stat_percentage(:free_throws_made, :free_throws_attempted) * 100, precision: 1)
+      %td
+        = player.offensive_rebounds_per(:game).round(1)
+      %td
+        = player.defensive_rebounds_per(:game).round(1)
+      %td
+        = player.total_rebounds_per(:game).round(1)
+      %td
+        = player.assists_per(:game).round(1)
+      %td
+        = player.steals_per(:game).round(1)
+      %td
+        = player.blocks_per(:game).round(1)
+      %td
+        = player.turnovers_per(:game).round(1)

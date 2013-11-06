@@ -1,3 +1,25 @@
 body.nba_matchups-show {
 
+  .team-names {
+    text-align: center;
+  }
+
+  .team-scores {
+    text-align: center;
+  }
+
+  .pace {
+    text-align: center;
+  }
+
+  .at_sign {
+    font-size: 36px;
+    font-weight: bold;
+    color: red;
+  }
+
+  .players-box-score {
+    th { text-align: center; }
+  }
+
 }

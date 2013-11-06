@@ -11,7 +11,10 @@ class NbaMatchup < ActiveRecord::Base
     where("home_team_id = ? OR away_team_id = ?", NbaTeam.find_by_abbr(abbr).id, NbaTeam.find_by_abbr(abbr).id)
   }
 
-# CONVENIENCE METHODS
+# DECORATORS
+  def display_name
+    "#{away_team.display_name} @ #{home_team.display_name} : #{gamedate.strftime('%b %d %Y')}"
+  end
 
 # QUERY METHODS
   def opponent(team)
