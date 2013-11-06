@@ -14,6 +14,13 @@ namespace :seed_data do
     inconsistent_names << ["Ognen Kuzmic", "Ognjen Kuzmic", "gsw"]
     inconsistent_names << ["JJ Redick", "J.J. Redick", "lac"]
     inconsistent_names << ["Jose Juan Barea", "Jose Barea", "min"]
+    inconsistent_names << ["Charles Hayes", "Chuck Hayes", "sac"]
+    inconsistent_names << ["Hamady Ndiaye", "Hamady N'Diaye", "sac"]
+    inconsistent_names << ["Patty Mills", "Patrick Mills", "sas"]
+    inconsistent_names << ["John Lucas III", "John Lucas", "uta"]
+    inconsistent_names << ["Michael Harris", "Mike Harris", "uta"]
+    inconsistent_names << ["PJ Tucker", "P.J. Tucker", "pho"]
+    inconsistent_names << ["Ish Smith", "Ishmael Smith", "pho"]
 
     inconsistent_names.each do |name_data|
       player = NbaPlayer.find_by_display_name(name_data[0])
