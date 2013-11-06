@@ -1,0 +1,38 @@
+body.nba_matchups-show {
+
+  .team-box-scores {
+    width: 50%;
+    height: 100%;
+
+    .team-box-score {
+      width: 45%;
+      position: relative;
+      text-align: center;
+
+      &.away-team {
+        float: left; }
+      &.home-team {
+        float: left; }
+
+    }
+
+  }
+
+  .players-box-score {
+    margin-top: 25px;
+
+    .row {
+      width: 100%;
+      position: relative;
+
+      .cell {
+        width: 75px;
+        float: left;
+        text-align: center;
+        &.player-name {
+          width: 200px; } }
+    }
+
+  }
+
+}

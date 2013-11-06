@@ -1,0 +1,15 @@
+%h1 NBA MATCHUP : SHOW
+
+.team-box-scores
+  = render partial: "team_box_score", locals: {away_team_box_score: @away_team_box_score, home_team_box_score: @home_team_box_score}
+
+.players-box-score.away-team
+  = render partial: "players_box_score", locals: {box_scores: @away_team_player_box_scores}
+
+.players-box-score.home-team
+  = render partial: "players_box_score", locals: {box_scores: @home_team_player_box_scores}
+
+- if @source_player.present?
+  = link_to "BACK TO #{@source_player.display_name}", player_url(@source_player)
+- else
+  = link_to "BACK TO TEAMS", teams_url

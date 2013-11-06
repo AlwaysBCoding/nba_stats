@@ -1,0 +1,10 @@
+.team-box-score.away-team
+  %h2= away_team_box_score.nba_team.display_name
+  %span.score= away_team_box_score.score
+
+.team-box-score.home-team
+  %h2= home_team_box_score.nba_team.display_name
+  %span.score= home_team_box_score.score
+
+.pace.clearfix
+  %h3= "Pace: #{away_team_box_score.pace.to_f}"
