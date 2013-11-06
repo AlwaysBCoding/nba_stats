@@ -46,6 +46,9 @@ ruby '2.0.0'
     gem "shoulda-matchers"
   end
 
+# DEPLOYMENT
+  gem 'rails_12factor', group: :production
+
 # OTHER THINGS THAT I DONT WANT TO TOUCH
 # ======================================
 
