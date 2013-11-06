@@ -17,7 +17,6 @@ class NbaPlayer < ActiveRecord::Base
     when :fourtyeight
       return ((sum_stat_total(:points) / minutes_played) * 48).round(2)
     end
-
   end
 
   def assists_per(interval)

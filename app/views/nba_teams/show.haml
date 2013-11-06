@@ -1,0 +1,8 @@
+%h1 TEAM : SHOW
+
+%h1= @team.display_name
+
+%ul.roster
+  - @team.roster.each do |player|
+    %li
+      =link_to player.display_name, player_url(player)

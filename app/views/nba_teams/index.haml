@@ -1,0 +1,19 @@
+%h1 TEAMS : INDEX
+
+.nba-teams
+  .conference.eastern
+    %p.conference-title EASTERN CONFERENCE
+    .division.atlantic
+      = render partial: "team_standing", locals: {teams: @teams.atlantic, division: "atlantic"}
+    .division.central
+      = render partial: "team_standing", locals: {teams: @teams.central, division: "central"}
+    .division.southeast
+      = render partial: "team_standing", locals: {teams: @teams.southeast, division: "southeast"}
+  .conference.western
+    %p.conference-title WESTERN CONFERENCE
+    .division.northwest
+      = render partial: "team_standing", locals: {teams: @teams.northwest, division: "northwest"}
+    .division.pacific
+      = render partial: "team_standing", locals: {teams: @teams.northwest, division: "pacific"}
+    .division.southwest
+      = render partial: "team_standing", locals: {teams: @teams.southwest, division: "southwest"}

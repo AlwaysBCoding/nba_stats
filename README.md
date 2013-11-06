@@ -16,3 +16,16 @@
 # PLAYER ADJUSTMENTS FROM THE ORIGINAL SCRIPT
   * Update these FROM nba.com names TO the basketball-reference names ( Make a rake task to do this )
   - Players are listed out on the rake task
+
+# FLOW
+### Team/Index
+  - Lists Standings
+
+### Team/Show
+  - Lists Roster
+
+### Player/Show
+  - Lists all Stats
+
+### Player/Index
+  - Lists League Leaders

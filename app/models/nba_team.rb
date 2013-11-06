@@ -7,6 +7,16 @@ class NbaTeam < ActiveRecord::Base
   has_many :team_box_scores
   has_many :player_box_scores
 
+# CONFIGURATION
+  def to_param
+    self.abbr
+  end
+
+# SCOPES
+  %w[atlantic central southeast northwest pacific southwest].each do |division|
+    scope division, -> { where(division: division) }
+  end
+
 # CONVENIENCE METHODS
   def nba_matchups
     home_matchups + away_matchups
@@ -19,6 +29,22 @@ class NbaTeam < ActiveRecord::Base
 # STATS QUERY METHODS
   def record
     "#{number_of_wins}-#{number_of_losses}"
+  end
+
+  def win_percentage
+    (number_of_wins / games_played.to_f).round(3)
+  end
+
+  def number_of_wins
+    TeamBoxScore.where(nba_team_id: self.id, result: "win").count
+  end
+
+  def number_of_losses
+    TeamBoxScore.where(nba_team_id: self.id, result: "loss").count
+  end
+
+  def games_played
+    team_box_scores.count
   end
 
 # QUERY METHODS
@@ -36,13 +62,5 @@ class NbaTeam < ActiveRecord::Base
     nba_matchups - player_box_scores.map(&:nba_matchup)
   end
 
-# PRIVATE METHODS
-  def number_of_wins
-    TeamBoxScore.where(nba_team_id: self.id, result: "win").count
-  end
-
-  def number_of_losses
-    TeamBoxScore.where(nba_team_id: self.id, result: "loss").count
-  end
 
 end
