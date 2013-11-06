@@ -9,7 +9,7 @@ class NbaPlayer < ActiveRecord::Base
     self.find_by_display_name(player_name)
   end
 
-# QUERY METHODS
+# STATS QUERY METHODS
   def points_per(interval)
     case interval
     when :game
@@ -29,7 +29,25 @@ class NbaPlayer < ActiveRecord::Base
     end
   end
 
-  def rebounds_per(interval)
+  def offensive_rebounds_per(interval)
+    case interval
+    when :game
+      return (sum_stat_toal(:offensive_rebounds) / games_played).round(2)
+    when :fourtyeight
+      return ((sum_stat_total(:offensive_rebounds) / minutes_played) * 48).round(2)
+    end
+  end
+
+  def defensive_rebounds_per(interval)
+    case interval
+    when :game
+      return (sum_stat_toal(:defensive_rebounds) / games_played).round(2)
+    when :fourtyeight
+      return ((sum_stat_total(:defensive_rebounds) / minutes_played) * 48).round(2)
+    end
+  end
+
+  def total_rebounds_per(interval)
     case interval
     when :game
       return ((sum_stat_total(:offensive_rebounds) + sum_stat_total(:defensive_rebounds)) / games_played).round(2)
