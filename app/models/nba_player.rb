@@ -10,24 +10,50 @@ class NbaPlayer < ActiveRecord::Base
   end
 
 # QUERY METHODS
-  def points_per_game
-    (sum_stat_total(:points) / games_played.to_f).round(2)
+  def points_per(interval)
+    case interval
+    when :game
+      return (sum_stat_total(:points) / games_played).round(2)
+    when :fourtyeight
+      return ((sum_stat_total(:points) / minutes_played) * 48).round(2)
+    end
+
   end
 
-  def assists_per_game
-    (sum_stat_total(:assists) / games_played.to_f).round(2)
+  def assists_per(interval)
+    case interval
+    when :game
+      return (sum_stat_total(:assists) / games_played).round(2)
+    when :fourtyeight
+      return ((sum_stat_total(:assists) / minutes_played) * 48).round(2)
+    end
   end
 
-  def rebounds_per_game
-    ((sum_stat_total(:offensive_rebounds) + sum_stat_total(:defensive_rebounds)) / games_played.to_f).round(2)
+  def rebounds_per(interval)
+    case interval
+    when :game
+      return ((sum_stat_total(:offensive_rebounds) + sum_stat_total(:defensive_rebounds)) / games_played).round(2)
+    when :fourtyeight
+      return (((sum_stat_total(:offensive_rebounds) + sum_stat_total(:defensive_rebounds)) / minutes_played) * 48).round(2)
+    end
   end
 
-  def steals_per_game
-    (sum_stat_total(:steals) / games_played.to_f).round(2)
+  def steals_per(interval)
+    case interval
+    when :game
+      return (sum_stat_total(:steals) / games_played).round(2)
+    when :fourtyeight
+      return ((sum_stat_total(:steals) / minutes_played) * 48).round(2)
+    end
   end
 
-  def blocks_per_game
-    (sum_stat_total(:blocks) / games_played.to_f).round(2)
+  def blocks_per(interval)
+    case interval
+    when :game
+      return (sum_stat_total(:blocks) / games_played).round(2)
+    when :fourtyeight
+      return ((sum_stat_total(:blocks) / minutes_played) * 48).round(2)
+    end
   end
 
 # PRIVATE METHODS
@@ -36,7 +62,11 @@ class NbaPlayer < ActiveRecord::Base
   end
 
   def games_played
-    player_box_scores.count
+    player_box_scores.count.to_f
+  end
+
+  def minutes_played
+    player_box_scores.pluck(:seconds_played).sum / 60.0
   end
 
 end

@@ -16,6 +16,11 @@ class NbaTeam < ActiveRecord::Base
     nba_players
   end
 
+# STATS QUERY METHODS
+  def record
+    "#{number_of_wins}-#{number_of_losses}"
+  end
+
 # QUERY METHODS
   def missing_team_box_scores
     nba_matchups - team_box_scores.map(&:nba_matchup)
@@ -29,6 +34,15 @@ class NbaTeam < ActiveRecord::Base
   # there is a much better way to do this with SQL instead of lading all the records into memory, i just dont know the arel for it
   def missing_player_box_scores
     nba_matchups - player_box_scores.map(&:nba_matchup)
+  end
+
+# PRIVATE METHODS
+  def number_of_wins
+    TeamBoxScore.where(nba_team_id: self.id, result: "win").count
+  end
+
+  def number_of_losses
+    TeamBoxScore.where(nba_team_id: self.id, result: "loss").count
   end
 
 end
