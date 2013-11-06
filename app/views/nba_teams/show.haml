@@ -4,10 +4,21 @@
   %li.current
     = link_to @team.display_name, team_url(@team)
 
-%h1= @team.display_name
+.row
+  %h1= @team.display_name
 
-%ul.pricing-table
-  %li.title Roster
-  - @team.roster.each do |player|
-    %li.bullet-item
-      =link_to player.display_name, player_url(player)
+  %ul.pricing-table
+    %li.title Record
+    %li.bullet-item= @team.record
+
+  %ul.pricing-table
+    %li.title Roster
+    - @team.roster.each do |player|
+      %li.bullet-item
+        =link_to player.display_name, player_url(player)
+
+  %ul.pricing-table
+    %li.title Box Scores
+    - @team.team_box_scores.each do |box_score|
+      %li.bullet-item
+        = link_to box_score.display_name, nba_matchup_url(box_score.nba_matchup, source_team: @team.id)

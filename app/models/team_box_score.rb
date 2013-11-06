@@ -20,6 +20,16 @@ class TeamBoxScore < ActiveRecord::Base
     return TeamBoxScore.where(nba_matchup: nba_matchup, location: "home").first if location == "away"
   end
 
+# DECORATORS
+  def display_name
+    "#{result} #{display_location} #{opponent.display_name} : #{gamedate}"
+  end
+
+  def display_location
+    return "vs" if location == "home"
+    return "at" if location == "away"
+  end
+
 # DELEGATIONS
   def gamedate
     nba_matchup.gamedate

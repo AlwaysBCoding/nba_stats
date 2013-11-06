@@ -6,6 +6,9 @@
       = link_to @source_player.nba_team.display_name, team_url(@source_player.nba_team)
     %li
       = link_to @source_player.display_name, player_url(@source_player), class: "current"
+  - elsif @source_team.present?
+    %li
+      = link_to @source_team.display_name, team_url(@source_team)
   %li.current
     = link_to @matchup.display_name, nba_matchup_url(@matchup)
 
