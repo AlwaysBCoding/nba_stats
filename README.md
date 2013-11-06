@@ -17,6 +17,44 @@
   * Update these FROM nba.com names TO the basketball-reference names ( Make a rake task to do this )
   - Players are listed out on the rake task
 
+# LIST OF TEAM ABBREVIATIONS TO QUERY
+  * ATL - Atlanta Hawks
+  * BOS - Boston Celtics
+  * BRK - Brookyln Nets
+  * CHA - Charlotte Bobcats
+  * CHI - Chicago Bulls
+  * CLE - Cleveland Cavaliers
+  * DAL - Dallas Mavericks
+  * DEN - Denver Nuggets
+  * DET - Detroit Pistons
+  * GSW - Golden State Warriors
+  * HOU - Houston Rockets
+  * IND - Indiana Pacers
+  * LAC - Los Angeles Clippers
+  * LAL - Los Angeles Lakers
+  * MEM - Memphis Grizzlies
+  * MIA - Miami Heat
+  * MIL - Milwaukee Bucks
+  * MIN - Minnesota Timberwolves
+  * NOP - New Orleans Pelicans
+  * NYK - New York Knicks
+  * OKC - Oklahoma City Thunder
+  * ORL - Orlando Magic
+  * PHI - Philadelphia 76ers
+  * PHO - Phoenix Suns
+  * POR - Portland Trail Blazers
+  * SAC - Sacramento Kings
+  * SAS - San Antonio Spurs
+  * TOR - Toronto Raptors
+  * UTA - Utah Jazz
+  * WAS - Washington Wizards
+
+# API
+### GET /team/:abbr.json
+  - Team Information
+  - Roster, with API Links to each player
+  - Results with Box Score Links
+
 # FLOW
 ### Team/Index
   - Lists Standings

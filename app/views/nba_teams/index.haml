@@ -1,19 +1,18 @@
 %h1 TEAMS : INDEX
 
-.nba-teams
-  .conference.eastern
-    %p.conference-title EASTERN CONFERENCE
-    .division.atlantic
+.nba-teams-container
+  %table.nba-teams
+    %thead
+      %tr.conference.eastern
+        %th.conference-title{colspan: 7} EASTERN CONFERENCE
+    %tbody
       = render partial: "team_standing", locals: {teams: @teams.atlantic, division: "atlantic"}
-    .division.central
       = render partial: "team_standing", locals: {teams: @teams.central, division: "central"}
-    .division.southeast
       = render partial: "team_standing", locals: {teams: @teams.southeast, division: "southeast"}
-  .conference.western
-    %p.conference-title WESTERN CONFERENCE
-    .division.northwest
+    %thead
+      %tr.conference.western
+        %th.conference-title{colspan: 7} WESTERN CONFERENCE
+    %tbody
       = render partial: "team_standing", locals: {teams: @teams.northwest, division: "northwest"}
-    .division.pacific
       = render partial: "team_standing", locals: {teams: @teams.pacific, division: "pacific"}
-    .division.southwest
       = render partial: "team_standing", locals: {teams: @teams.southwest, division: "southwest"}

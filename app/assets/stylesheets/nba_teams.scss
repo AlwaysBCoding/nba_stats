@@ -1,15 +1,13 @@
 body.nba_teams-index {
 
-  .row {
-    width: 100%;
-    position: relative;
-
-    .cell {
-      width: 200px;
-      float: left; }
-
-    &.standing-header {
-      font-weight: bold; }
-
+  tr.conference {
+    th {
+      text-align: center; }
   }
+
+  tr.division {
+    td {
+      text-align: center; }
+  }
+
 }

@@ -1,11 +1,19 @@
 !!!
 %html
   %head
-    %title NbaStats
+
+    %meta{name:"viewport", content:"width=device-width, initial-scale=1.0"}
+    %title= content_for?(:title) ? yield(:title) : "NBA Stats"
+
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
-    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = javascript_include_tag "vendor/custom.modernizr"
+
     = csrf_meta_tags
     = yield(:head)
+
   %body{class: "#{controller.controller_name}-#{controller.action_name}"}
+
     .container
       = yield
+
+    = javascript_include_tag "application", "data-turbolinks-track" => true

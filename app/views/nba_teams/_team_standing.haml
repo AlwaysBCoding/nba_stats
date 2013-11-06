@@ -1,20 +1,33 @@
-.row.clearfix.standing-header
-  .cell
-    %span= division.upcase
-  .cell
-    %span W
-  .cell
-    %span L
-  .cell
-    %span PCT
+%tr.division.division-header{class: division}
+  %th
+    = division.upcase
+  %th
+    W
+  %th
+    L
+  %th
+    PCT
+  %th
+    HOME
+  %th
+    AWAY
+  %th
+    L10
+
 - teams.sort! { |team2, team1| team1.win_percentage <=> team2.win_percentage }
 - teams.each do |team|
-  .row.clearfix.team-standing
-    .cell
+  %tr.division.division-data{class: division}
+    %td
       = link_to team.display_name, team_url(team)
-    .cell
-      %span= team.number_of_wins
-    .cell
-      %span= team.number_of_losses
-    .cell
-      %span= team.win_percentage
+    %td
+      = team.number_of_wins
+    %td
+      = team.number_of_losses
+    %td
+      = team.win_percentage
+    %td
+      = "#{team.home_record[0]}-#{team.home_record[1]}"
+    %td
+      = "#{team.away_record[0]}-#{team.away_record[1]}"
+    %td
+      = "#{team.last_10_record[0]}-#{team.last_10_record[1]}"

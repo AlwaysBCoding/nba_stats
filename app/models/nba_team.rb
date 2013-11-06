@@ -36,15 +36,36 @@ class NbaTeam < ActiveRecord::Base
   end
 
   def number_of_wins
-    TeamBoxScore.where(nba_team_id: self.id, result: "win").count
+    TeamBoxScore.where(nba_team: self, result: "win").count
   end
 
   def number_of_losses
-    TeamBoxScore.where(nba_team_id: self.id, result: "loss").count
+    TeamBoxScore.where(nba_team: self, result: "loss").count
   end
 
   def games_played
     team_box_scores.count
+  end
+
+  def home_record
+    [
+      TeamBoxScore.where(nba_team: self, result: "win", location: "home").count,
+      TeamBoxScore.where(nba_team: self, result: "loss", location: "home").count
+    ]
+  end
+
+  def away_record
+    [
+      TeamBoxScore.where(nba_team: self, result: "win", location: "away").count,
+      TeamBoxScore.where(nba_team: self, result: "loss", location: "away").count
+    ]
+  end
+
+  def last_10_record
+    last_10 = team_box_scores.includes(:nba_matchup).sort { |bx1, bx2| bx2.gamedate <=> bx1.gamedate }.last(10)
+    wins = last_10.select { |bx| bx.result == "win" }.count
+    losses = last_10.select { |bx| bx.result == "loss" }.count
+    return [wins, losses]
   end
 
 # QUERY METHODS

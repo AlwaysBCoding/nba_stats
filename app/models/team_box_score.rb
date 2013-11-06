@@ -9,4 +9,9 @@ class TeamBoxScore < ActiveRecord::Base
     joins(:nba_matchup).where(nba_team: NbaTeam.find_by_abbr(abbr)).order("gamedate DESC")
   }
 
+# DELEGATIONS
+  def gamedate
+    nba_matchup.gamedate
+  end
+
 end

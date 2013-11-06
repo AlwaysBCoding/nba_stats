@@ -5,7 +5,7 @@ class NbaTeamsController < ApplicationController
   end
 
   def show
-    @team = NbaTeam.find_by_abbr(params[:abbr])
+    @team = NbaTeam.find_by_abbr(params[:abbr].downcase)
   end
 
 end
