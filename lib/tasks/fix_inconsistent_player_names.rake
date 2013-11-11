@@ -9,6 +9,7 @@ namespace :seed_data do
     inconsistent_names << ["CJ Watson", "C.J. Watson", "ind"]
     inconsistent_names << ["Roger Mason Jr.", "Roger Mason", "mia"]
     inconsistent_names << ["Timothy Hardaway Jr.", "Tim Hardaway", "nyk"]
+    inconsistent_names << ["Toure Murry", "Toure' Murry", "nyk"]
     inconsistent_names << ["Nene", "Nene Hilario", "was"]
     inconsistent_names << ["JJ Hickson", "J.J. Hickson", "den"]
     inconsistent_names << ["Ognen Kuzmic", "Ognjen Kuzmic", "gsw"]

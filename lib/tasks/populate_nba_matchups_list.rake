@@ -4,7 +4,9 @@ namespace :seed_data do
     browser = Watir::Browser.new :ff
 
     dates = [
-      [11, 06, 2013]
+      [11, 8, 2013],
+      [11, 9, 2013],
+      [11, 10, 2013]
     ]
 
     dates.each do |date|
