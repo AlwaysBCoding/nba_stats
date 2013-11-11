@@ -1,0 +1,22 @@
+.row.nba-players-container
+  %h1 League Leaders
+  %table.nba-players.columns.large12
+    %thead
+      %tr.league-leaders
+        %th{colspan: 12} LEAGUE LEADERS
+      %tr.stat-category
+        %th Rank
+        %th Player Name
+        %th TEAM
+        %th PTS
+        %th MIN
+        %th AST
+        %th ORB
+        %th DRB
+        %th TRB
+        %th BLK
+        %th STL
+        %th TOV
+
+    %tbody
+      = render partial: "stat_line"

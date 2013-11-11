@@ -1,0 +1,15 @@
+- @stats.each_with_index do |stat, index|
+  - player = @players.detect { |player| player.id == stat["nba_player_id"].to_i }
+  %tr.stat-line
+    %td= index + 1
+    %td= link_to player.display_name, player_url(player)
+    %td= player.team.abbr.upcase
+    %td= stat["points_per_game"].to_f.round(2)
+    %td= stat["minutes_per_game"].to_f.round(2)
+    %td= stat["assists_per_game"].to_f.round(2)
+    %td= stat["offensive_rebounds_per_game"].to_f.round(2)
+    %td= stat["defensive_rebounds_per_game"].to_f.round(2)
+    %td= stat["total_rebounds_per_game"].to_f.round(2)
+    %td= stat["blocks_per_game"].to_f.round(2)
+    %td= stat["steals_per_game"].to_f.round(2)
+    %td= stat["turnovers_per_game"].to_f.round(2)

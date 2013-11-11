@@ -1,3 +1,21 @@
 body.nba_players-show {
 
 }
+
+body.nba_players-index {
+
+  table.nba-players {
+    cursor: pointer;
+    th { text-align: center; }
+    td { text-align: center; }
+
+    tbody {
+      tr {
+        &:hover {
+          background-color: #FFEC8B; }
+      }
+    }
+
+  }
+
+}

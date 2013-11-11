@@ -9,6 +9,15 @@ class NbaPlayer < ActiveRecord::Base
     self.find_by_display_name(player_name)
   end
 
+  def team
+    self.nba_team
+  end
+
+# STATS FILTER METHODS
+  # scope :leading_scorers, -> {
+  #   order()
+  # }
+
 # STATS QUERY METHODS
   def points_per(interval)
     case interval
@@ -89,6 +98,14 @@ class NbaPlayer < ActiveRecord::Base
     end
   end
 
+  def games_played
+    player_box_scores.count.to_f
+  end
+
+  def minutes_played
+    player_box_scores.pluck(:seconds_played).sum / 60.0
+  end
+
 # HELPER METHODS
   def sum_stat_total(stat)
     player_box_scores.pluck(stat).sum
@@ -96,14 +113,6 @@ class NbaPlayer < ActiveRecord::Base
 
   def sum_stat_percentage(stat1, stat2)
     ( sum_stat_total(stat1) / sum_stat_total(stat2).to_f )
-  end
-
-  def games_played
-    player_box_scores.count.to_f
-  end
-
-  def minutes_played
-    player_box_scores.pluck(:seconds_played).sum / 60.0
   end
 
 end

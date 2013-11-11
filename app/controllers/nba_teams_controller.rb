@@ -14,7 +14,7 @@ class NbaTeamsController < ApplicationController
 
   end
 
-# CONFIG
+# CONFIGURATION
   def default_serializer_options
     { root: false }
   end

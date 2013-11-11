@@ -18,6 +18,11 @@ class PlayerBoxScore < ActiveRecord::Base
     TeamBoxScore.where(nba_team: nba_team, nba_matchup: nba_matchup).first.result
   end
 
+# CONVENIENCE METHODS
+  def player
+    self.nba_player
+  end
+
 # VIEW METHODS (SHOULD BE IN A DECORATOR...)
   def display_name
     "#{nba_matchup.gamedate.strftime('%b %d %Y')} #{display_location} #{opponent.abbr.upcase}"
