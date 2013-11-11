@@ -2,12 +2,12 @@ namespace :seed_data do
   desc "Populates DB with a list of all completed NBA Matchups"
   task :populate_nba_matchups_list => :environment do
     browser = Watir::Browser.new :ff
+    dates = []
 
-    dates = [
-      [11, 8, 2013],
-      [11, 9, 2013],
-      [11, 10, 2013]
-    ]
+    ARGV.each_with_index do |date, index|
+      next if index == 0
+      dates << date.split(",")
+    end
 
     dates.each do |date|
       url = "http://www.basketball-reference.com/boxscores/index.cgi?month=#{date[0]}&day=#{date[1]}&year=#{date[2]}"
