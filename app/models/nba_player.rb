@@ -3,14 +3,19 @@ class NbaPlayer < ActiveRecord::Base
 # ASSOCIATIONS
   belongs_to :nba_team
   has_many :player_box_scores
+  has_one :nba_contract
 
 # CONVENIENCE METHODS
-  def self.search(player_name)
+  def self.q(player_name)
     self.find_by_display_name(player_name)
   end
 
   def team
     self.nba_team
+  end
+
+  def contract
+    self.nba_contract
   end
 
 # STATS FILTER METHODS

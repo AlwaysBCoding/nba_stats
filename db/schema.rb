@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131105052152) do
+ActiveRecord::Schema.define(version: 20131112001728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "nba_contracts", force: true do |t|
+    t.integer  "nba_player_id"
+    t.integer  "salary_2014",   default: 0
+    t.integer  "salary_2015",   default: 0
+    t.integer  "salary_2016",   default: 0
+    t.integer  "salary_2017",   default: 0
+    t.integer  "salary_2018",   default: 0
+    t.integer  "salary_2019",   default: 0
+    t.integer  "salary_2020",   default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "nba_matchups", force: true do |t|
     t.integer  "home_team_id"
