@@ -3,7 +3,7 @@ class NbaPlayer < ActiveRecord::Base
 # ASSOCIATIONS
   belongs_to :nba_team
   has_many :player_box_scores
-  has_one :nba_contract
+  # has_one :nba_contract
 
 # CONVENIENCE METHODS
   def self.q(player_name)
@@ -14,9 +14,9 @@ class NbaPlayer < ActiveRecord::Base
     self.nba_team
   end
 
-  def contract
-    self.nba_contract
-  end
+  # def contract
+  #   self.nba_contract
+  # end
 
 # STATS FILTER METHODS
   # scope :leading_scorers, -> {

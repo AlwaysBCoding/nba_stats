@@ -18,6 +18,10 @@ class NbaTeam < ActiveRecord::Base
   end
 
 # CONVENIENCE METHODS
+  def self.q(abbr)
+    self.find_by_abbr(abbr)
+  end
+
   def nba_matchups
     home_matchups + away_matchups
   end
@@ -39,18 +43,8 @@ class NbaTeam < ActiveRecord::Base
     TeamBoxScore.where(nba_team: self, result: "win").count
   end
 
-  def number_of_wins_at(location)
-    return TeamBoxScore.where(nba_team: self, result: "win", location: "home").count if location == :home
-    return TeamBoxScore.where(nba_team: self, result: "win", location: "away").count if location == :away
-  end
-
   def number_of_losses
     TeamBoxScore.where(nba_team: self, result: "loss").count
-  end
-
-  def number_of_losses_at(location)
-    return TeamBoxScore.where(nba_team: self, result: "loss", location: "home").count if location == :home
-    return TeamBoxScore.where(nba_team: self, result: "loss", location: "away").count if location == :away
   end
 
   def games_played
