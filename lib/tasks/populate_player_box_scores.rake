@@ -26,7 +26,7 @@ namespace :seed_data do
         PlayerBoxScore.transaction do
 
           basic_stat_rows.each_with_index do |basic_stat_row, index|
-            player = NbaPlayer.where(nba_team_id: team.id, display_name: basic_stat_row.at_css("td:nth-child(1)").text).first
+            player = NbaPlayer.where(nba_team_id: team.id, display_name: basic_stat_row.at_css("td:nth-child(1)").text.strip).first
             raise "PLAYER NOT FOUND: #{team.abbr.upcase}-#{basic_stat_row.at_css("td:nth-child(1)").text}" unless player.present?
 
             minutes_played = basic_stat_row.at_css("td:nth-child(2)").text.split(":")
