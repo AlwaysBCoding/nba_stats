@@ -1,6 +1,6 @@
-namespace :seed_data do
+namespace :data do
   desc "Populates each matchup with the team box scores"
-  task :populate_team_box_scores => :environment do
+  task :team_box_scores => :environment do
     require "open-uri"
 
     NbaTeam.all.each do |team|

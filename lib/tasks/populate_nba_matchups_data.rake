@@ -1,6 +1,6 @@
-namespace :seed_data do
+namespace :data do
   desc "Populates DB with the matchup data for each matchup"
-  task :populate_nba_matchups_data => :environment do
+  task :nba_matchups_data => :environment do
     require "open-uri"
 
     empty_matchups = NbaMatchup.where("home_team_id IS NULL OR away_team_id IS NULL")

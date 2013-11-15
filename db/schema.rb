@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131112001728) do
+ActiveRecord::Schema.define(version: 20131115160258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,9 @@ ActiveRecord::Schema.define(version: 20131112001728) do
     t.string   "college"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "basketball_reference_id"
+    t.string   "twitter"
+    t.string   "instagram"
   end
 
   create_table "nba_teams", force: true do |t|
