@@ -4,6 +4,10 @@ body.nba_players-show {
 
 body.nba_players-index {
 
+  .filter-players {
+    text-align: center;
+  }
+
   table.nba-players {
     cursor: pointer;
     th { text-align: center; }
@@ -12,10 +16,6 @@ body.nba_players-index {
     tbody {
       tr {
         &:hover {
-          background-color: #FFEC8B; }
-      }
-    }
-
-  }
+          background-color: #FFEC8B; } } } }
 
 }
