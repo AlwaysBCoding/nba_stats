@@ -46,6 +46,10 @@ ruby '2.0.0'
   gem "watir-webdriver"
   gem "nokogiri"
 
+# SOCIAL MEDIA
+  gem "twitter"
+  gem "instagram"
+
 # API BUILDER
   gem "active_model_serializers"
 

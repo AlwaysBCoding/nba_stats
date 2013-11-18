@@ -17,3 +17,9 @@
   - player_box_scores.each do |player_box_score|
     .box_score
       = link_to player_box_score.display_name, nba_matchup_url(player_box_score.nba_matchup, source_player: @player.id)
+
+- if @tweets.present?
+  %h2 TWEETS
+  = render partial: "recent_tweets", locals: { tweets: @tweets }
+- else
+  %h2 NO TWITTER
