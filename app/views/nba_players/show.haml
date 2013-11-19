@@ -11,6 +11,8 @@
 .total-stats-container
   = render partial: "total_stats", locals: {player: @player}
 
+%hr
+
 .box-scores
   %h2 Box Scores
   - player_box_scores = @player.player_box_scores.sort { |bx1, bx2| bx2.gamedate <=> bx1.gamedate }
@@ -18,8 +20,14 @@
     .box_score
       = link_to player_box_score.display_name, nba_matchup_url(player_box_score.nba_matchup, source_player: @player.id)
 
-- if @tweets.present?
-  %h2 TWEETS
-  = render partial: "recent_tweets", locals: { tweets: @tweets }
-- else
-  %h2 NO TWITTER
+%hr
+
+.social-media
+  %h4= "Twitter: #{@player.twitter}"
+  %h4= "Instagram: #{@player.instagram}"
+
+/ - if @tweets.present?
+/   %h2 TWEETS
+/   = render partial: "recent_tweets", locals: { tweets: @tweets }
+/ - else
+/   %h2 NO TWITTER
