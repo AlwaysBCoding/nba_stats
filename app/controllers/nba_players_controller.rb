@@ -28,9 +28,15 @@ class NbaPlayersController < ApplicationController
     query += "FROM player_box_scores "
     query += "GROUP BY nba_player_id "
     query += "ORDER BY points_per_game DESC;"
+    # query += "LIMIT 50;"
 
     results = ActiveRecord::Base.connection.execute(query)
     @stats = results.to_a
+
+    respond_to do |format|
+      format.html
+      format.json { render json: results }
+    end
 
   end
 
