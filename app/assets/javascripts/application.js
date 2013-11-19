@@ -15,6 +15,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require underscore
+//= require nba_teams
 //= require nba_players
 
 //=require foundation

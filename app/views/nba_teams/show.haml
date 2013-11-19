@@ -5,6 +5,11 @@
     = link_to @team.display_name, team_url(@team)
 
 .row
+  %h1 Leading Scorers
+  .ajax-loading
+  .leading-scorers
+
+.row.team-information{data: {team: @team.abbr}}
   %h1= @team.display_name
 
   %ul.pricing-table
@@ -22,3 +27,8 @@
     - @team.team_box_scores.each do |box_score|
       %li.bullet-item
         = link_to box_score.display_name, nba_matchup_url(box_score.nba_matchup, source_team: @team.id)
+
+
+// Load D3 Javascript Library
+- content_for :head do
+  %script{src: "http://d3js.org/d3.v3.min.js", charset: "utf-8"}

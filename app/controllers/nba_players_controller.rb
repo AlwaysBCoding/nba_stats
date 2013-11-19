@@ -2,7 +2,7 @@ class NbaPlayersController < ApplicationController
 
   def show
     @player = NbaPlayer.find(params[:id])
-    @tweets = Twitter.user_timeline(@player.twitter, count: 10) if @player.twitter
+    # @tweets = Twitter.user_timeline(@player.twitter, count: 10) if @player.twitter
 
     respond_to do |format|
       format.html
