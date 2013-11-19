@@ -4,6 +4,11 @@ body.nba_players-show {
 
 body.nba_players-index {
 
+  .featured-players {
+    div {
+      background-color: green;
+      margin-bottom: 10px; } }
+
   .filter-players {
     text-align: center;
   }

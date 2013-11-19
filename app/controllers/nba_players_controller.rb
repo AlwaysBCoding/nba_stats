@@ -30,8 +30,13 @@ class NbaPlayersController < ApplicationController
     query += "ORDER BY points_per_game DESC;"
     # query += "LIMIT 50;"
 
-    results = ActiveRecord::Base.connection.execute(query)
-    @stats = results.to_a
+    results = ActiveRecord::Base.connection.execute(query).to_a
+
+    player_names = results.map do |result|
+      player = NbaPlayer.includes(:nba_team).find(result["nba_player_id"])
+      result["display_name"] = player.display_name
+      result["team"] = player.team.abbr
+    end
 
     respond_to do |format|
       format.html

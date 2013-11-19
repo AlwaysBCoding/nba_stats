@@ -1,15 +1,29 @@
-- @stats.each_with_index do |stat, index|
-  - player = @players.detect { |player| player.id == stat["nba_player_id"].to_i }
-  %tr.stat-line
-    %td= index + 1
-    %td= link_to player.display_name, player_url(player)
-    %td= player.team.abbr.upcase
-    %td= stat["points_per_game"].to_f.round(2)
-    %td= stat["minutes_per_game"].to_f.round(2)
-    %td= stat["assists_per_game"].to_f.round(2)
-    %td= stat["offensive_rebounds_per_game"].to_f.round(2)
-    %td= stat["defensive_rebounds_per_game"].to_f.round(2)
-    %td= stat["total_rebounds_per_game"].to_f.round(2)
-    %td= stat["blocks_per_game"].to_f.round(2)
-    %td= stat["steals_per_game"].to_f.round(2)
-    %td= stat["turnovers_per_game"].to_f.round(2)
+%tr.stat-line{ng: {repeat: "player in players | filter: playerQuery | orderBy: sortProperty:sortDirection"}}
+  %td {{$index + 1}}
+  %td {{ player.display_name }}
+  %td {{ player.team }}
+  %td {{ player.points_per_game | number:2 }}
+  %td {{ player.minutes_per_game | number:2 }}
+  %td {{ player.assists_per_game | number:2 }}
+  %td {{ player.offensive_rebounds_per_game | number:2 }}
+  %td {{ player.defensive_rebounds_per_game | number:2 }}
+  %td {{ player.total_rebounds_per_game | number:2 }}
+  %td {{ player.blocks_per_game | number:2 }}
+  %td {{ player.steals_per_game | number:2 }}
+  %td {{ player.turnovers_per_game | number:2 }}
+
+  / %td= stat["nba_player_id"]
+  / / %td= link_to player.display_name, player_url(player)
+  / / %td= player.team.abbr.upcase
+  / %td= stat["points_per_game"].to_f.round(2)
+  / %td= stat["minutes_per_game"].to_f.round(2)
+  / %td= stat["assists_per_game"].to_f.round(2)
+  / %td= stat["offensive_rebounds_per_game"].to_f.round(2)
+  / %td= stat["defensive_rebounds_per_game"].to_f.round(2)
+  / %td= stat["total_rebounds_per_game"].to_f.round(2)
+  / %td= stat["blocks_per_game"].to_f.round(2)
+  / %td= stat["steals_per_game"].to_f.round(2)
+  / %td= stat["turnovers_per_game"].to_f.round(2)
+
+/ - @stats.each_with_index do |stat, index|
+/ - player = @players.detect { |player| player.id == stat["nba_player_id"].to_i }

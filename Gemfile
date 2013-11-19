@@ -29,6 +29,8 @@ ruby '2.0.0'
   gem 'turbolinks'
   gem 'jquery-turbolinks'
   gem "zurb-foundation", "~> 4.0.0"
+  gem "d3-rails"
+  gem "angularjs-rails"
 
 # TESTING
   group :development, :test do

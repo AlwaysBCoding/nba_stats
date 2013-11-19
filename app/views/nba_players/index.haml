@@ -1,23 +1,30 @@
-.row.nba-players-container
-  %h1 League Leaders
-  %input.filter-players{type: "text"}
-  %table.nba-players.columns.large12
-    %thead
-      %tr.league-leaders
-        %th{colspan: 12} LEAGUE LEADERS
-      %tr.stat-category
-        %th Rank
-        %th Player Name
-        %th TEAM
-        %th PTS
-        %th MIN
-        %th AST
-        %th ORB
-        %th DRB
-        %th TRB
-        %th BLK
-        %th STL
-        %th TOV
+.row{ng: {app: "nba_players"}}
+  .nba-players-container{ng: {controller: "nba_players_controller"}}
+    %h1 {{ heading }}
 
-    %tbody
-      = render partial: "stat_line"
+    %firstplayer
+
+    / %svg.featured-players{width: 1000, height: 500}
+
+    %input.filter-players{type: "text", ng: {model: "playerQuery"}}
+
+    %table.nba-players.columns.large12
+      %thead
+        %tr.league-leaders
+          %th{colspan: 12} LEAGUE LEADERS
+        %tr.stat-category
+          %th Rank
+          %th{ng: {click: "sortBy('display_name')"}} Player Name
+          %th{ng: {click: "sortBy('team')"}} TEAM
+          %th{ng: {click: "sortBy('points_per_game')"}} PTS
+          %th{ng: {click: "sortBy('minutes_per_game')"}} MIN
+          %th{ng: {click: "sortBy('assists_per_game')"}} AST
+          %th{ng: {click: "sortBy('offensive_rebounds_per_game')"}} ORB
+          %th{ng: {click: "sortBy('defensive_rebounds_per_game')"}} DRB
+          %th{ng: {click: "sortBy('total_rebounds_per_game')"}} TRB
+          %th{ng: {click: "sortBy('blocks_per_game')"}} BLK
+          %th{ng: {click: "sortBy('steals_per_game')"}} STL
+          %th{ng: {click: "sortBy('turnovers_per_game')"}} TOV
+
+      %tbody
+        = render partial: "stat_line"

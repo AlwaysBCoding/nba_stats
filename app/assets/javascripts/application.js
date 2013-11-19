@@ -15,8 +15,11 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require underscore
+//= require d3
+//= require angular
 //= require nba_teams
 //= require nba_players
+//= require ng/nba_players/app
 
 //=require foundation
 $(document).foundation();
