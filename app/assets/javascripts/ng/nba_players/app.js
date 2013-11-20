@@ -3,28 +3,44 @@ var app;
 
 app = angular.module("nba_players", []);
 
-app.controller("nba_players_controller", function($scope, $http, $filter) {
-  $scope.heading = "League Leaders";
-  $http({
-    method: "GET",
-    url: "../players.json"
-  }).success(function(data, status, headers, config) {
-    return _.each(data, function(player) {
-      player.team = player.team.toUpperCase();
-      player.minutes_per_game = parseFloat(player.minutes_per_game);
-      player.points_per_game = parseFloat(player.points_per_game);
-      player.assists_per_game = parseFloat(player.assists_per_game);
-      player.offensive_rebounds_per_game = parseFloat(player.offensive_rebounds_per_game);
-      player.defensive_rebounds_per_game = parseFloat(player.defensive_rebounds_per_game);
-      player.total_rebounds_per_game = parseFloat(player.total_rebounds_per_game);
-      player.steals_per_game = parseFloat(player.steals_per_game);
-      player.blocks_per_game = parseFloat(player.blocks_per_game);
-      player.turnovers_per_game = parseFloat(player.turnovers_per_game);
-      return $scope.players = data;
+app.factory("playersApiFactory", function($http) {
+  var playersApiFactory;
+  playersApiFactory = {};
+  playersApiFactory.getPlayers = function() {
+    var players;
+    players = [];
+    $http({
+      method: "GET",
+      url: "/players.json"
+    }).success(function(data, status, headers, config) {
+      return _.each(data, function(dirty_player) {
+        var clean_player;
+        clean_player = {};
+        clean_player.display_name = dirty_player.display_name;
+        clean_player.team = dirty_player.team.toUpperCase();
+        clean_player.minutes_per_game = parseFloat(dirty_player.minutes_per_game);
+        clean_player.points_per_game = parseFloat(dirty_player.points_per_game);
+        clean_player.assists_per_game = parseFloat(dirty_player.assists_per_game);
+        clean_player.offensive_rebounds_per_game = parseFloat(dirty_player.offensive_rebounds_per_game);
+        clean_player.defensive_rebounds_per_game = parseFloat(dirty_player.defensive_rebounds_per_game);
+        clean_player.total_rebounds_per_game = parseFloat(dirty_player.total_rebounds_per_game);
+        clean_player.steals_per_game = parseFloat(dirty_player.steals_per_game);
+        clean_player.blocks_per_game = parseFloat(dirty_player.blocks_per_game);
+        clean_player.turnovers_per_game = parseFloat(dirty_player.turnovers_per_game);
+        return players.push(clean_player);
+      });
     });
-  });
+    return players;
+  };
+  return playersApiFactory;
+});
+
+app.controller("nba_players_controller", function($scope, $http, $filter, playersApiFactory) {
+  $scope.heading = "League Leaders";
   $scope.sortProperty = "points_per_game";
   $scope.sortDirection = true;
+  console.log(playersApiFactory);
+  $scope.players = playersApiFactory.getPlayers();
   return $scope.sortBy = function(column) {
     if ($scope.sortProperty === column) {
       return $scope.sortDirection = !$scope.sortDirection;
