@@ -8,7 +8,7 @@ $(function() {
     var leadingScorers = [];
     var leadingRebounders = [];
 
-    $.getJSON("http://localhost:4000/team/" + team + ".json", function(data) {
+    $.getJSON("/team/" + team + ".json", function(data) {
       _.each(data.roster, function(player) {
         roster_urls.push(player.url + ".json");
       });

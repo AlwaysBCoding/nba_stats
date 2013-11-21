@@ -1,7 +1,10 @@
 %tr.stat-line{ng: {repeat: "player in players | filter: playerQuery | orderBy: sortProperty:sortDirection"}}
   %td {{$index + 1}}
   %td {{ player.display_name }}
+  %td {{ player.position }}
   %td {{ player.team }}
+  %td {{ player.college }}
+  %td {{ player.height }}
   %td {{ player.points_per_game | number:2 }}
   %td {{ player.minutes_per_game | number:2 }}
   %td {{ player.assists_per_game | number:2 }}

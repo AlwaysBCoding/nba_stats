@@ -25,6 +25,9 @@ app.factory "playersApiFactory", ($http) ->
         clean_player.steals_per_game = parseFloat(dirty_player.steals_per_game)
         clean_player.blocks_per_game = parseFloat(dirty_player.blocks_per_game)
         clean_player.turnovers_per_game = parseFloat(dirty_player.turnovers_per_game)
+        clean_player.college = dirty_player.college
+        clean_player.position = dirty_player.position
+        clean_player.height = dirty_player.height
         players.push(clean_player)
 
     return players
@@ -37,7 +40,6 @@ app.controller "nba_players_controller", ($scope, $http, $filter, playersApiFact
   $scope.heading = "League Leaders"
   $scope.sortProperty = "points_per_game"
   $scope.sortDirection = true
-  console.log playersApiFactory
   $scope.players = playersApiFactory.getPlayers()
 
   $scope.sortBy = (column) ->

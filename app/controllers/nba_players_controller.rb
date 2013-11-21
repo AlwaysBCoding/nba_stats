@@ -36,6 +36,9 @@ class NbaPlayersController < ApplicationController
       player = NbaPlayer.includes(:nba_team).find(result["nba_player_id"])
       result["display_name"] = player.display_name
       result["team"] = player.team.abbr
+      result["position"] = player.position
+      result["height"] = player.height
+      result["college"] = player.college
     end
 
     respond_to do |format|

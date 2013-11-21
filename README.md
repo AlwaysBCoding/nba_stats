@@ -81,3 +81,20 @@
   * NBA_TWITTER_CONSUMER_SECRET
   * NBA_TWITTER_OAUTH_TOKEN
   * NBA_TWITTER+OAUTH_TOKEN_SECRET
+
+# PLAYERS QUERY PAGE
+   * Meta Data
+    - Player Name
+    - Team
+    - College
+
+  * Per Game Data
+    - Points
+    - Minutes
+    - Assists
+    - Offensive Rebounds
+    - Defensive Rebounds
+    - Total Rebounds
+    - Blocks
+    - Steals
+    - Turnovers

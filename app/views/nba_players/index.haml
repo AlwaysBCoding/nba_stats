@@ -11,11 +11,14 @@
     %table.nba-players.columns.large12
       %thead
         %tr.league-leaders
-          %th{colspan: 12} LEAGUE LEADERS
+          %th{colspan: 15} LEAGUE LEADERS
         %tr.stat-category
           %th Rank
           %th{ng: {click: "sortBy('display_name')"}} Player Name
+          %th{ng: {click: "sortBy('position')"}} POS
           %th{ng: {click: "sortBy('team')"}} TEAM
+          %th{ng: {click: "sortBy('college')"}} COLLEGE
+          %th{ng: {click: "sortBy('height')"}} HGT
           %th{ng: {click: "sortBy('points_per_game')"}} PTS
           %th{ng: {click: "sortBy('minutes_per_game')"}} MIN
           %th{ng: {click: "sortBy('assists_per_game')"}} AST
