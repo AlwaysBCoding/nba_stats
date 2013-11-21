@@ -3,52 +3,56 @@ var app;
 
 app = angular.module("nba_players", []);
 
-app.factory("playersApiFactory", function($http) {
-  var playersApiFactory;
-  playersApiFactory = {};
-  playersApiFactory.getPlayers = function() {
-    var players;
-    players = [];
-    $http({
-      method: "GET",
-      url: "/players.json"
-    }).success(function(data, status, headers, config) {
-      return _.each(data, function(dirty_player) {
-        var clean_player;
-        clean_player = {};
-        clean_player.display_name = dirty_player.display_name;
-        clean_player.team = dirty_player.team.toUpperCase();
-        clean_player.minutes_per_game = parseFloat(dirty_player.minutes_per_game);
-        clean_player.points_per_game = parseFloat(dirty_player.points_per_game);
-        clean_player.assists_per_game = parseFloat(dirty_player.assists_per_game);
-        clean_player.offensive_rebounds_per_game = parseFloat(dirty_player.offensive_rebounds_per_game);
-        clean_player.defensive_rebounds_per_game = parseFloat(dirty_player.defensive_rebounds_per_game);
-        clean_player.total_rebounds_per_game = parseFloat(dirty_player.total_rebounds_per_game);
-        clean_player.steals_per_game = parseFloat(dirty_player.steals_per_game);
-        clean_player.blocks_per_game = parseFloat(dirty_player.blocks_per_game);
-        clean_player.turnovers_per_game = parseFloat(dirty_player.turnovers_per_game);
-        clean_player.college = dirty_player.college;
-        clean_player.position = dirty_player.position;
-        clean_player.height = dirty_player.height;
-        return players.push(clean_player);
+app.factory("playersApiFactory", [
+  "$http", function($http) {
+    var playersApiFactory;
+    playersApiFactory = {};
+    playersApiFactory.getPlayers = function() {
+      var players;
+      players = [];
+      $http({
+        method: "GET",
+        url: "/players.json"
+      }).success(function(data, status, headers, config) {
+        return _.each(data, function(dirty_player) {
+          var clean_player;
+          clean_player = {};
+          clean_player.display_name = dirty_player.display_name;
+          clean_player.team = dirty_player.team.toUpperCase();
+          clean_player.minutes_per_game = parseFloat(dirty_player.minutes_per_game);
+          clean_player.points_per_game = parseFloat(dirty_player.points_per_game);
+          clean_player.assists_per_game = parseFloat(dirty_player.assists_per_game);
+          clean_player.offensive_rebounds_per_game = parseFloat(dirty_player.offensive_rebounds_per_game);
+          clean_player.defensive_rebounds_per_game = parseFloat(dirty_player.defensive_rebounds_per_game);
+          clean_player.total_rebounds_per_game = parseFloat(dirty_player.total_rebounds_per_game);
+          clean_player.steals_per_game = parseFloat(dirty_player.steals_per_game);
+          clean_player.blocks_per_game = parseFloat(dirty_player.blocks_per_game);
+          clean_player.turnovers_per_game = parseFloat(dirty_player.turnovers_per_game);
+          clean_player.college = dirty_player.college;
+          clean_player.position = dirty_player.position;
+          clean_player.height = dirty_player.height;
+          return players.push(clean_player);
+        });
       });
-    });
-    return players;
-  };
-  return playersApiFactory;
-});
+      return players;
+    };
+    return playersApiFactory;
+  }
+]);
 
-app.controller("nba_players_controller", function($scope, $http, $filter, playersApiFactory) {
-  $scope.heading = "League Leaders";
-  $scope.sortProperty = "points_per_game";
-  $scope.sortDirection = true;
-  $scope.players = playersApiFactory.getPlayers();
-  return $scope.sortBy = function(column) {
-    if ($scope.sortProperty === column) {
-      return $scope.sortDirection = !$scope.sortDirection;
-    } else {
-      $scope.sortProperty = column;
-      return $scope.sortDirection = true;
-    }
-  };
-});
+app.controller("nba_players_controller", [
+  "$scope", "$http", "$filter", "playersApiFactory", function($scope, $http, $filter, playersApiFactory) {
+    $scope.heading = "League Leaders";
+    $scope.sortProperty = "points_per_game";
+    $scope.sortDirection = true;
+    $scope.players = playersApiFactory.getPlayers();
+    return $scope.sortBy = function(column) {
+      if ($scope.sortProperty === column) {
+        return $scope.sortDirection = !$scope.sortDirection;
+      } else {
+        $scope.sortProperty = column;
+        return $scope.sortDirection = true;
+      }
+    };
+  }
+]);

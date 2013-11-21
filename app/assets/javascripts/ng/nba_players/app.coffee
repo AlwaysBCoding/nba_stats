@@ -2,7 +2,7 @@
 app = angular.module "nba_players", []
 
 # factories
-app.factory "playersApiFactory", ($http) ->
+app.factory "playersApiFactory", ["$http", ($http) ->
   playersApiFactory = {}
 
   playersApiFactory.getPlayers = ->
@@ -33,9 +33,10 @@ app.factory "playersApiFactory", ($http) ->
     return players
 
   return playersApiFactory
+]
 
 # controllers
-app.controller "nba_players_controller", ($scope, $http, $filter, playersApiFactory) ->
+app.controller "nba_players_controller", ["$scope", "$http", "$filter", "playersApiFactory", ($scope, $http, $filter, playersApiFactory) ->
 
   $scope.heading = "League Leaders"
   $scope.sortProperty = "points_per_game"
@@ -48,6 +49,7 @@ app.controller "nba_players_controller", ($scope, $http, $filter, playersApiFact
     else
       $scope.sortProperty = column
       $scope.sortDirection = true
+]
 
     # ordered_players = $filter('orderBy')($scope.players, $scope.sortProperty, $scope.sortDirection)
     # featured_players = $filter('limitTo')(ordered_players, 5)
