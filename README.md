@@ -98,3 +98,15 @@
     - Blocks
     - Steals
     - Turnovers
+
+# QUERY DSL
+
+  One thing you can query is GAME, which searches individual games for certain paramters.
+
+  FILTER with the 'pipe' character. In case you don't know it looks like this: |
+  The pipe is a common convention in programming to filter a result. This can be used similarly to a WHERE clause in SQL to subdivide your search query
+
+  You can query a filter on a TEAM or on a PLAYER. So if I query a GAME I can filter by player.stat or a team.stat
+
+  Logic. Can be used interchangably with AND and OR and chained together.
+  OR is the question mark

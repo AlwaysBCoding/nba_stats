@@ -1,0 +1,14 @@
+.row
+  %h2 NBA Knowledge Engine
+
+.row
+  .search-query-container
+    %form.search-form
+      %input.search-query{type: "text"}
+
+.row
+  .search-response-container
+    %ul
+
+- content_for :page_specific_scripts do
+  = javascript_include_tag "search"

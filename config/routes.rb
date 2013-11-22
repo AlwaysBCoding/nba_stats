@@ -13,4 +13,8 @@ NbaStats::Application.routes.draw do
 # MATCHUPS
   get "/nba-matchup/:id" => "nba_matchups#show", as: :nba_matchup
 
+# KNOWLEDGE ENGINE
+  get "/search" => "search#index", as: :search
+  get "/query" => "search#query", as: :query
+
 end

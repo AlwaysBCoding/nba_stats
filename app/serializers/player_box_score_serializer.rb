@@ -1,5 +1,7 @@
 class PlayerBoxScoreSerializer < ActiveModel::Serializer
-  attributes :opponent,
+  attributes :player,
+             :team,
+             :opponent,
              :gamedate,
              :location,
              :result,
@@ -29,7 +31,8 @@ class PlayerBoxScoreSerializer < ActiveModel::Serializer
              :offensive_rating,
              :defensive_rating,
              :plus_minus,
-             :box_score_url
+             :box_score_url,
+             :basketball_reference_id
 
   def opponent
     object.opponent.abbr
@@ -37,6 +40,22 @@ class PlayerBoxScoreSerializer < ActiveModel::Serializer
 
   def box_score_url
     nba_matchup_url(object.nba_matchup)
+  end
+
+  def basketball_reference_id
+    object.nba_matchup.basketball_reference_id
+  end
+
+  def player
+    object.nba_player.display_name
+  end
+
+  def team
+    object.nba_player.nba_team.abbr
+  end
+
+  def gamedate
+    object.gamedate.strftime("%B %e, %Y")
   end
 
 end

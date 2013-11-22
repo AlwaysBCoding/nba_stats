@@ -12,8 +12,9 @@
     = yield(:head)
 
   %body{class: "#{controller.controller_name}-#{controller.action_name}"}
-
-    .container
+    .body-container
       = yield
 
+  %footer
     = javascript_include_tag "application", "data-turbolinks-track" => true
+    = yield(:page_specific_scripts)
