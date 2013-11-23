@@ -45,11 +45,13 @@ class SearchController < ApplicationController
 
     end
 
-    raise filters.inspect
+    # raise filters.inspect
 
     type = "player"
-    filters = ["points >= 35", "assists >= 20"]
-    filter_seperators = ["OR"]
+    # filters = ["points >= 40", "assists >= 20"]
+    # filter_seperators = ["OR"]
+
+    filters = ["points >= 40"]
 
     query_segment = filters.zip(filter_seperators).flatten.compact.join(" ")
 
