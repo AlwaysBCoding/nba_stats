@@ -1,15 +1,19 @@
-%tr.stat-line{ng: {repeat: "team in teams"}}
+%tr.stat-line{ng: {repeat: "team in teams | orderBy: sortProperty:sortDirection " }}
   %td {{ $index + 1 }}
   %td {{ team.team_name }}
+  %td {{ team.net_rating | number: 2 }}
   %td {{ team.games_played }}
   %td {{ team.wins }}
   %td {{ team.losses }}
   %td {{ team.winning_percentage }}
-  %td {{ team.home_wins }} - {{ team.home_losses }}
-  %td {{ team.away_wins }} - {{ team.away_losses }}
-  %td {{ team.last_10_wins }} - {{ team.last_10_losses }}
+  %td {{ team.home_wins }}-{{ team.home_losses }}
+  %td {{ team.away_wins }}-{{ team.away_losses }}
+  %td {{ team.last_10_wins }}-{{ team.last_10_losses }}
   %td {{ team.possessions | number: 0 }}
-  %td {{ team.pace | number: 2 }}
-  %td {{ team.offensive_rating | number: 2 }}
-  %td {{ team.defensive_rating | number: 2 }}
-  %td {{ team.net_rating | number: 2 }}
+  %td {{ team.pace }}
+  %td {{ team.offensive_rating }}
+  %td {{ team.defensive_rating }}
+  %td {{ team.assist_percentage }}
+  %td {{ team.total_rebound_percentage }}
+  %td {{ team.block_percentage }}
+  %td {{ team.steal_percentage }}

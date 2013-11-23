@@ -10,18 +10,22 @@
         %tr.stat-category
           %th RANK
           %th TEAM
-          %th GP
-          %th W
-          %th L
-          %th Win%
-          %th HOME
-          %th AWAY
-          %th L10
-          %th POS
-          %th PACE
-          %th ORTG
-          %th DRTG
-          %th NRTG
+          %th{ng: {click: "sortBy('net_rating')"} } NRTG
+          %th{ng: {click: "sortBy('games_played')"} } GP
+          %th{ng: {click: "sortBy('wins')"} } W
+          %th{ng: {click: "sortBy('losses')"} } L
+          %th{ng: {click: "sortBy('winning_percentage')"} } WIN%
+          %th{ng: {click: "sortBy('home_winning_percentage')"} } HOME
+          %th{ng: {click: "sortBy('away_winning_percentage')"} } AWAY
+          %th{ng: {click: "sortBy('last_10_wins')"} } L10
+          %th{ng: {click: "sortBy('possessions')"} } POS
+          %th{ng: {click: "sortBy('pace')"} } PACE
+          %th{ng: {click: "sortBy('offensive_rating')"} } ORTG
+          %th{ng: {click: "sortBy('defensive_rating')"} } DRTG
+          %th{ng: {click: "sortBy('assist_percentage')"} } AST%
+          %th{ng: {click: "sortBy('total_rebound_percentage')"} } TRB%
+          %th{ng: {click: "sortBy('block_percentage')"} } BLK%
+          %th{ng: {click: "sortBy('steal_percentage')"} } STL%
           / %th STAT
           / %th STAT
           / %th STAT

@@ -24,5 +24,13 @@ app.factory "teamsApiFactory", ["$http", ($http) ->
 app.controller "nbaTeamsController", [ "$scope", "teamsApiFactory", ($scope, teamsApiFactory) ->
 
   $scope.teams = teamsApiFactory.getTeams()
+  $scope.sortProperty = "net_rating"
+  $scope.sortDirection = true
 
+  $scope.sortBy = (column) ->
+    if $scope.sortProperty == column
+      $scope.sortDirection = !$scope.sortDirection
+    else
+      $scope.sortProperty = column
+      $scope.sortDirection = true
 ]

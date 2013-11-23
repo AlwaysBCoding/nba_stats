@@ -79,6 +79,25 @@ class NbaTeam < ActiveRecord::Base
     offensive_rating - defensive_rating
   end
 
+  def assist_percentage
+    sum_stat_total(:assists) / sum_stat_total(:field_goals_made)
+  end
+
+  def block_percentage
+    sum_stat_total(:blocks) / ( sum_opponent_stat_total(:field_goals_attempted) - sum_opponent_stat_total(:three_pointers_attempted) )
+  end
+
+  def steal_percentage
+    sum_stat_total(:steals) / number_of_opponent_possessions
+  end
+
+  def total_rebound_percentage
+    total_team_rebounds = sum_stat_total(:offensive_rebounds) + sum_stat_total(:defensive_rebounds)
+    total_opponent_team_rebounds = sum_opponent_stat_total(:offensive_rebounds) + sum_opponent_stat_total(:defensive_rebounds)
+    total_available_rebounds = total_team_rebounds + total_opponent_team_rebounds
+    total_team_rebounds / total_available_rebounds
+  end
+
   def number_of_possessions
     fga     = sum_stat_total(:field_goals_attempted)
     fgm     = sum_stat_total(:field_goals_made)
@@ -86,26 +105,30 @@ class NbaTeam < ActiveRecord::Base
     orb     = sum_stat_total(:offensive_rebounds)
     drb     = sum_stat_total(:defensive_rebounds)
     tov     = sum_stat_total(:turnovers)
-    # opp_fga = all_opponent_box_scores.map(&:field_goals_attempted).sum
-    # opp_fgm = all_opponent_box_scores.map(&:field_goals_made).sum
-    # opp_fta = all_opponent_box_scores.map(&:free_throws_attempted).sum
-    # opp_orb = all_opponent_box_scores.map(&:offensive_rebounds).sum
-    # opp_drb = all_opponent_box_scores.map(&:defensive_rebounds).sum
-    # opp_tov = all_opponent_box_scores.map(&:turnovers).sum
 
-    pos_estimate = ( fga - orb + tov + (0.44 * fta) )
+    return ( fga - orb + tov + (0.44 * fta) )
     # opp_pos_estimate = 0.96 * ( opp_fga - opp_orb + opp_tov + (0.44 * opp_fta) )
     # return (pos_estimate + opp_pos_estimate) * 0.5
-    return pos_estimate
+  end
+
+  def number_of_opponent_possessions
+    opp_fga = sum_opponent_stat_total(:field_goals_attempted)
+    opp_fgm = sum_opponent_stat_total(:field_goals_made)
+    opp_fta = sum_opponent_stat_total(:free_throws_attempted)
+    opp_orb = sum_opponent_stat_total(:offensive_rebounds)
+    opp_drb = sum_opponent_stat_total(:defensive_rebounds)
+    opp_tov = sum_opponent_stat_total(:turnovers)
+
+    return ( opp_fga - opp_orb + opp_tov + (0.44 * opp_fta) )
   end
 
 # HELPER METHODS
   def sum_stat_total(stat)
-    player_box_scores.pluck(stat).sum
+    player_box_scores.pluck(stat).sum.to_f
   end
 
   def sum_opponent_stat_total(stat)
-    all_opponent_box_scores.map { |bx| bx.send(stat) }.sum
+    all_opponent_box_scores.map { |bx| bx.send(stat) }.sum.to_f
   end
 
   def all_opponent_box_scores

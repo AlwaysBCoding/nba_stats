@@ -26,6 +26,16 @@ app.factory("teamsApiFactory", [
 
 app.controller("nbaTeamsController", [
   "$scope", "teamsApiFactory", function($scope, teamsApiFactory) {
-    return $scope.teams = teamsApiFactory.getTeams();
+    $scope.teams = teamsApiFactory.getTeams();
+    $scope.sortProperty = "net_rating";
+    $scope.sortDirection = true;
+    return $scope.sortBy = function(column) {
+      if ($scope.sortProperty === column) {
+        return $scope.sortDirection = !$scope.sortDirection;
+      } else {
+        $scope.sortProperty = column;
+        return $scope.sortDirection = true;
+      }
+    };
   }
 ]);
