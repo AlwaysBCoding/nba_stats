@@ -21,8 +21,6 @@ class NbaTeamsController < ApplicationController
   end
 
   def index
-    # home
-    # away
     # pace
     # offensive rating
     # defensive rating
@@ -92,6 +90,7 @@ class NbaTeamsController < ApplicationController
         team_query_data["winning_percentage"] = team.winning_percentage
         team_query_data["last_10_wins"] = team.recent_games(10).select { |bx| bx.result == "win" }.count
         team_query_data["last_10_losses"] = team.recent_games(10).select { |bx| bx.result == "loss" }.count
+        team_query_data["pace"] = team.pace
 
         teams_query_data << team_query_data
       end

@@ -25,4 +25,8 @@ class NbaMatchup < ActiveRecord::Base
     return NbaTeam.find(home_team_id) if team.id == away_team_id
   end
 
+  def opponent_box_scores(team)
+    return PlayerBoxScore.where(nba_team: opponent(team), nba_matchup: self)
+  end
+
 end

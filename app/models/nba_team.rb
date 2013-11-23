@@ -51,15 +51,12 @@ class NbaTeam < ActiveRecord::Base
   end
 
 # STATS QUERY METHODS
-  def record(location=nil)
-    case location
-    when :home
-      [number_of_wins(:home), number_of_losses(:home)]
-    when :away
-      [number_of_wins(:away), number_of_losses(:away)]
-    else
-      [number_of_wins, number_of_losses]
-    end
+  def record
+    "#{won_games} - #{lost_games}"
+  end
+
+  def pace
+    team_box_scores.average(:pace)
   end
 
   def winning_percentage
@@ -68,6 +65,36 @@ class NbaTeam < ActiveRecord::Base
 
   def games_played
     team_box_scores.count
+  end
+
+  def number_of_possessions
+    fga     = sum_stat_total(:field_goals_attempted)
+    fgm     = sum_stat_total(:field_goals_made)
+    fta     = sum_stat_total(:free_throws_attempted)
+    orb     = sum_stat_total(:offensive_rebounds)
+    drb     = sum_stat_total(:defensive_rebounds)
+    tov     = sum_stat_total(:turnovers)
+    opp_fga = all_opponent_box_scores.map(&:field_goals_attempted).sum
+    opp_fgm = all_opponent_box_scores.map(&:field_goals_made).sum
+    opp_fta = all_opponent_box_scores.map(&:free_throws_attempted).sum
+    opp_orb = all_opponent_box_scores.map(&:offensive_rebounds).sum
+    opp_drb = all_opponent_box_scores.map(&:defensive_rebounds).sum
+    opp_tov = all_opponent_box_scores.map(&:turnovers).sum
+
+    pos_estimate = (fga + 0.4 * fta - 1.07 * (orb / (orb + opp_drb)) * (fga - fgm) + tov)
+    opp_pos_estimate = (opp_fga + 0.4 * opp_fta - 1.07 * (opp_orb / (opp_orb + drb)) * (opp_fga - opp_fgm) + opp_tov)
+
+    return (pos_estimate + opp_pos_estimate) * 0.5
+
+  end
+
+# HELPER METHODS
+  def sum_stat_total(stat)
+    player_box_scores.pluck(stat).sum
+  end
+
+  def all_opponent_box_scores
+    nba_matchups.collect { |matchup| matchup.opponent_box_scores(self) }.flatten
   end
 
 # QUERY METHODS
