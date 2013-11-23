@@ -1,7 +1,10 @@
 namespace :data do
   desc "Populates DB with a list of all completed NBA Matchups"
   task :nba_matchups_list => :environment do
-    browser = Watir::Browser.new :ff
+    # browser = Watir::Browser.new :ff
+    # browser.goto(url)
+    # browser.close
+
     dates = []
 
     ARGV.each_with_index do |date, index|
@@ -11,8 +14,7 @@ namespace :data do
 
     dates.each do |date|
       url = "http://www.basketball-reference.com/boxscores/index.cgi?month=#{date[0]}&day=#{date[1]}&year=#{date[2]}"
-      browser.goto(url)
-      doc = Nokogiri::HTML.parse(browser.html)
+      doc = Nokogiri::HTML(open(url))
 
       games = doc.css("div#boxes a[href^='/boxscores']")
       games.each do |game|
@@ -25,7 +27,6 @@ namespace :data do
     end
 
     puts "SHUTTING DOWN..."
-    browser.close
 
   end
 end

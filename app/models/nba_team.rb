@@ -56,7 +56,7 @@ class NbaTeam < ActiveRecord::Base
   end
 
   def pace
-    team_box_scores.average(:pace)
+    ( number_of_possessions / (sum_stat_total(:seconds_played) / 300 ) ) * 48
   end
 
   def winning_percentage
@@ -67,6 +67,18 @@ class NbaTeam < ActiveRecord::Base
     team_box_scores.count
   end
 
+  def offensive_rating
+    ( sum_stat_total(:points) / number_of_possessions ) * 100
+  end
+
+  def defensive_rating
+    ( sum_opponent_stat_total(:points) / number_of_possessions ) * 100
+  end
+
+  def net_rating
+    offensive_rating - defensive_rating
+  end
+
   def number_of_possessions
     fga     = sum_stat_total(:field_goals_attempted)
     fgm     = sum_stat_total(:field_goals_made)
@@ -74,23 +86,26 @@ class NbaTeam < ActiveRecord::Base
     orb     = sum_stat_total(:offensive_rebounds)
     drb     = sum_stat_total(:defensive_rebounds)
     tov     = sum_stat_total(:turnovers)
-    opp_fga = all_opponent_box_scores.map(&:field_goals_attempted).sum
-    opp_fgm = all_opponent_box_scores.map(&:field_goals_made).sum
-    opp_fta = all_opponent_box_scores.map(&:free_throws_attempted).sum
-    opp_orb = all_opponent_box_scores.map(&:offensive_rebounds).sum
-    opp_drb = all_opponent_box_scores.map(&:defensive_rebounds).sum
-    opp_tov = all_opponent_box_scores.map(&:turnovers).sum
+    # opp_fga = all_opponent_box_scores.map(&:field_goals_attempted).sum
+    # opp_fgm = all_opponent_box_scores.map(&:field_goals_made).sum
+    # opp_fta = all_opponent_box_scores.map(&:free_throws_attempted).sum
+    # opp_orb = all_opponent_box_scores.map(&:offensive_rebounds).sum
+    # opp_drb = all_opponent_box_scores.map(&:defensive_rebounds).sum
+    # opp_tov = all_opponent_box_scores.map(&:turnovers).sum
 
-    pos_estimate = (fga + 0.4 * fta - 1.07 * (orb / (orb + opp_drb)) * (fga - fgm) + tov)
-    opp_pos_estimate = (opp_fga + 0.4 * opp_fta - 1.07 * (opp_orb / (opp_orb + drb)) * (opp_fga - opp_fgm) + opp_tov)
-
-    return (pos_estimate + opp_pos_estimate) * 0.5
-
+    pos_estimate = ( fga - orb + tov + (0.44 * fta) )
+    # opp_pos_estimate = 0.96 * ( opp_fga - opp_orb + opp_tov + (0.44 * opp_fta) )
+    # return (pos_estimate + opp_pos_estimate) * 0.5
+    return pos_estimate
   end
 
 # HELPER METHODS
   def sum_stat_total(stat)
     player_box_scores.pluck(stat).sum
+  end
+
+  def sum_opponent_stat_total(stat)
+    all_opponent_box_scores.map { |bx| bx.send(stat) }.sum
   end
 
   def all_opponent_box_scores

@@ -21,10 +21,6 @@ class NbaTeamsController < ApplicationController
   end
 
   def index
-    # pace
-    # offensive rating
-    # defensive rating
-    # net rating
     # points per game
     # assists per game
     # assist percentage
@@ -72,7 +68,7 @@ class NbaTeamsController < ApplicationController
 
 # JSON GENERATION
   def generate_teams_query_json
-    Rails.cache.fetch "nba_teams_query_json", expires_in: 10.seconds do
+    Rails.cache.fetch "nba_teams_query_json", expires_in: 1.hour do
 
       teams_query_data = []
 
@@ -84,13 +80,17 @@ class NbaTeamsController < ApplicationController
         team_query_data["wins"] = team.won_games.count
         team_query_data["losses"] = team.lost_games.count
         team_query_data["home_wins"] = team.home_games.won_games.count
-        team_query_data["home_losses"] = team.away_games.lost_games.count
+        team_query_data["home_losses"] = team.home_games.lost_games.count
         team_query_data["away_wins"] = team.away_games.won_games.count
         team_query_data["away_losses"] = team.away_games.lost_games.count
         team_query_data["winning_percentage"] = team.winning_percentage
         team_query_data["last_10_wins"] = team.recent_games(10).select { |bx| bx.result == "win" }.count
         team_query_data["last_10_losses"] = team.recent_games(10).select { |bx| bx.result == "loss" }.count
+        team_query_data["possessions"] = team.number_of_possessions
         team_query_data["pace"] = team.pace
+        team_query_data["offensive_rating"] = team.offensive_rating
+        team_query_data["defensive_rating"] = team.defensive_rating
+        team_query_data["net_rating"] = team.net_rating
 
         teams_query_data << team_query_data
       end

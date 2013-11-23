@@ -24,4 +24,8 @@ app.factory("teamsApiFactory", [
   }
 ]);
 
-app.controller("nbaTeamsController", ["$scope", "teamsApiFactory", function($scope, teamsApiFactory) {}]);
+app.controller("nbaTeamsController", [
+  "$scope", "teamsApiFactory", function($scope, teamsApiFactory) {
+    return $scope.teams = teamsApiFactory.getTeams();
+  }
+]);

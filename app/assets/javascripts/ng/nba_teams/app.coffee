@@ -23,6 +23,6 @@ app.factory "teamsApiFactory", ["$http", ($http) ->
 # controllers
 app.controller "nbaTeamsController", [ "$scope", "teamsApiFactory", ($scope, teamsApiFactory) ->
 
-  # $scope.teams = teamsApiFactory.getTeams()
+  $scope.teams = teamsApiFactory.getTeams()
 
 ]
