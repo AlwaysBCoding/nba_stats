@@ -5,8 +5,24 @@ class TeamBoxScore < ActiveRecord::Base
   belongs_to :nba_matchup
 
 # SCOPES
-  scope :ordered_box_scores_for_team, ->(abbr) {
-    joins(:nba_matchup).where(nba_team: NbaTeam.find_by_abbr(abbr)).order("gamedate DESC")
+  scope :recent, ->(n) {
+    includes(:nba_matchup).joins(:nba_matchup).order("gamedate desc").limit(n)
+  }
+
+  scope :won_games, -> {
+    where(result: "win")
+  }
+
+  scope :lost_games, -> {
+    where(result: "loss")
+  }
+
+  scope :home_games, -> {
+    where(location: "home")
+  }
+
+  scope :away_games, -> {
+    where(location: "away")
   }
 
 # CONVENIENCE METHODS

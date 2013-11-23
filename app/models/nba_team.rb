@@ -30,32 +30,44 @@ class NbaTeam < ActiveRecord::Base
     nba_players
   end
 
+  def won_games
+    team_box_scores.won_games
+  end
+
+  def lost_games
+    team_box_scores.lost_games
+  end
+
+  def home_games
+    team_box_scores.home_games
+  end
+
+  def away_games
+    team_box_scores.away_games
+  end
+
+  def recent_games(n)
+    team_box_scores.recent(n)
+  end
+
 # STATS QUERY METHODS
-  def record
-    "#{number_of_wins}-#{number_of_losses}"
+  def record(location=nil)
+    case location
+    when :home
+      [number_of_wins(:home), number_of_losses(:home)]
+    when :away
+      [number_of_wins(:away), number_of_losses(:away)]
+    else
+      [number_of_wins, number_of_losses]
+    end
   end
 
-  def win_percentage
-    (number_of_wins / games_played.to_f).round(3)
-  end
-
-  def number_of_wins
-    TeamBoxScore.where(nba_team: self, result: "win").count
-  end
-
-  def number_of_losses
-    TeamBoxScore.where(nba_team: self, result: "loss").count
+  def winning_percentage
+    (won_games.count / games_played.to_f).round(3)
   end
 
   def games_played
     team_box_scores.count
-  end
-
-  def last_10_record
-    last_10 = team_box_scores.includes(:nba_matchup).sort { |bx1, bx2| bx2.gamedate <=> bx1.gamedate }.last(10)
-    wins = last_10.select { |bx| bx.result == "win" }.count
-    losses = last_10.select { |bx| bx.result == "loss" }.count
-    return [wins, losses]
   end
 
 # QUERY METHODS

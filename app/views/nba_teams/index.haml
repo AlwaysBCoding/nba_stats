@@ -2,33 +2,34 @@
   .row
     %h1 NBA Team Stats
 
-  %table.nba-teams-table.columns.large12
-    %thead
-      %tr.query-teams
-        %th{colspan: 20} QUERY TEAMS
-      %tr.stat-category
-        %th STAT
-        %th STAT
-        %th STAT
-        %th STAT
-        %th STAT
-        %th STAT
-        %th STAT
-        %th STAT
-        %th STAT
-        %th STAT
-        %th STAT
-        %th STAT
-        %th STAT
-        %th STAT
-        %th STAT
-        %th STAT
-        %th STAT
-        %th STAT
-        %th STAT
-        %th STAT
-    %tbody
-      = render partial: "team_stat_line"
+  .row
+    %table.nba-teams-table.columns.large12
+      %thead
+        %tr.query-teams
+          %th{colspan: 20} QUERY TEAMS
+        %tr.stat-category
+          %th STAT
+          %th STAT
+          %th STAT
+          %th STAT
+          %th STAT
+          %th STAT
+          %th STAT
+          %th STAT
+          %th STAT
+          %th STAT
+          %th STAT
+          %th STAT
+          %th STAT
+          %th STAT
+          %th STAT
+          %th STAT
+          %th STAT
+          %th STAT
+          %th STAT
+          %th STAT
+      %tbody
+        = render partial: "team_stat_line"
 
 - content_for :page_specific_scripts do
   = javascript_include_tag "ng/nba_teams/app"
