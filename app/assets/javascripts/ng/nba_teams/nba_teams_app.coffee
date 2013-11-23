@@ -1,8 +1,8 @@
 # initialize app
-app = angular.module "nbaTeams", []
+nbaTeamsApp = angular.module "nbaTeams", []
 
 # factories
-app.factory "teamsApiFactory", ["$http", ($http) ->
+nbaTeamsApp.factory "teamsApiFactory", ["$http", ($http) ->
   teamsApiFactory = {}
 
   teamsApiFactory.getTeams = ->
@@ -21,7 +21,7 @@ app.factory "teamsApiFactory", ["$http", ($http) ->
 ]
 
 # controllers
-app.controller "nbaTeamsController", [ "$scope", "teamsApiFactory", ($scope, teamsApiFactory) ->
+nbaTeamsApp.controller "nbaTeamsController", [ "$scope", "teamsApiFactory", ($scope, teamsApiFactory) ->
 
   $scope.teams = teamsApiFactory.getTeams()
   $scope.sortProperty = "net_rating"

@@ -1,5 +1,5 @@
-.row{ng: {app: "nba_players"}}
-  .nba-players-container{ng: {controller: "nba_players_controller"}}
+.row{ng: {app: "nbaPlayers"}}
+  .nba-players-container{ng: {controller: "nbaPlayersController"}}
     %h1 {{ heading }}
 
     %firstplayer
@@ -33,4 +33,4 @@
         = render partial: "player_stat_line"
 
 - content_for :page_specific_scripts do
-  = javascript_include_tag "ng/nba_players/app"
+  = javascript_include_tag "ng/nba_players/nba_players_app"
