@@ -6,25 +6,29 @@
   %li.current
     = link_to @player.display_name, player_url(@player), class: "current"
 
-%h1= @player.display_name
+.row
+  %h1= @player.display_name
 
-.total-stats-container
-  = render partial: "total_stats", locals: {player: @player}
-
-%hr
-
-.box-scores
-  %h2 Box Scores
-  - player_box_scores = @player.player_box_scores.sort { |bx1, bx2| bx2.gamedate <=> bx1.gamedate }
-  - player_box_scores.each do |player_box_score|
-    .box_score
-      = link_to player_box_score.display_name, nba_matchup_url(player_box_score.nba_matchup, source_player: @player.id)
+.row
+  .total-stats-container
+    = render partial: "total_stats", locals: {player: @player}
 
 %hr
 
-.social-media
-  %h4= "Twitter: #{@player.twitter}"
-  %h4= "Instagram: #{@player.instagram}"
+.row
+  .box-scores
+    %h2 Box Scores
+    - player_box_scores = @player.player_box_scores.sort { |bx1, bx2| bx2.gamedate <=> bx1.gamedate }
+    - player_box_scores.each do |player_box_score|
+      .box_score
+        = link_to player_box_score.display_name, nba_matchup_url(player_box_score.nba_matchup, source_player: @player.id)
+
+%hr
+
+.row
+  .social-media
+    %h4= "Twitter: #{@player.twitter}"
+    %h4= "Instagram: #{@player.instagram}"
 
 / - if @tweets.present?
 /   %h2 TWEETS

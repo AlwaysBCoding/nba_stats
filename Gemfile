@@ -48,7 +48,8 @@ ruby '2.0.0'
   gem "watir-webdriver"
   gem "nokogiri"
 
-# SOCIAL MEDIA
+# API WRAPPERS
+  gem "twilio-ruby"
   gem "twitter"
   gem "instagram"
 
