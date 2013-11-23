@@ -1,17 +1,34 @@
-.row.nba-teams-container
-  %h1 ALL NBA TEAMS
-  %table.nba-teams.columns.large-12
+.nba-teams-container{ng: {app: "nbaTeams", controller: "nbaTeamsController"}}
+  .row
+    %h1 NBA Team Stats
+
+  %table.nba-teams-table.columns.large12
     %thead
-      %tr.conference.eastern
-        %th.conference-title{colspan: 7} EASTERN CONFERENCE
+      %tr.query-teams
+        %th{colspan: 20} QUERY TEAMS
+      %tr.stat-category
+        %th STAT
+        %th STAT
+        %th STAT
+        %th STAT
+        %th STAT
+        %th STAT
+        %th STAT
+        %th STAT
+        %th STAT
+        %th STAT
+        %th STAT
+        %th STAT
+        %th STAT
+        %th STAT
+        %th STAT
+        %th STAT
+        %th STAT
+        %th STAT
+        %th STAT
+        %th STAT
     %tbody
-      = render partial: "team_standing", locals: {teams: @teams.atlantic, division: "atlantic"}
-      = render partial: "team_standing", locals: {teams: @teams.central, division: "central"}
-      = render partial: "team_standing", locals: {teams: @teams.southeast, division: "southeast"}
-    %thead
-      %tr.conference.western
-        %th.conference-title{colspan: 7} WESTERN CONFERENCE
-    %tbody
-      = render partial: "team_standing", locals: {teams: @teams.northwest, division: "northwest"}
-      = render partial: "team_standing", locals: {teams: @teams.pacific, division: "pacific"}
-      = render partial: "team_standing", locals: {teams: @teams.southwest, division: "southwest"}
+      = render partial: "team_stat_line"
+
+- content_for :page_specific_scripts do
+  = javascript_include_tag "ng/nba_teams/app"

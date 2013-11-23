@@ -30,4 +30,7 @@
           %th{ng: {click: "sortBy('turnovers_per_game')"}} TOV
 
       %tbody
-        = render partial: "stat_line"
+        = render partial: "player_stat_line"
+
+- content_for :page_specific_scripts do
+  = javascript_include_tag "ng/nba_players/app"

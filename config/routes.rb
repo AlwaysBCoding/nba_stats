@@ -1,8 +1,9 @@
 NbaStats::Application.routes.draw do
 
-  root to: "nba_teams#index"
+  root to: "nba_teams#standings"
 
 # TEAMS
+  get "/standings" => "nba_teams#standings", as: :standings
   get "/teams" => "nba_teams#index", as: :teams
   get "/team/:abbr" => "nba_teams#show", as: :team
 

@@ -44,6 +44,13 @@ ruby '2.0.0'
     gem "shoulda-matchers"
   end
 
+# CACHING RESOURCES
+  gem "actionpack-page_caching"
+  gem "actionpack-action_caching"
+  gem "rack-cache"
+  gem "dalli"
+  gem "memcachier"
+
 # WEB SCRAPING
   gem "watir-webdriver"
   gem "nokogiri"

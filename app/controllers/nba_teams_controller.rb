@@ -1,6 +1,6 @@
 class NbaTeamsController < ApplicationController
 
-  def index
+  def standings
     @teams = NbaTeam.all
 
     query = ""
@@ -20,6 +20,47 @@ class NbaTeamsController < ApplicationController
 
   end
 
+  def index
+    # team name
+    # games played
+    # record
+    # home
+    # away
+    # last 10
+    # pace
+    # offensive rating
+    # defensive rating
+    # net rating
+    # points per game
+    # assists per game
+    # assist percentage
+    # offensive rebounds per game
+    # defensive rebounds per game
+    # total rebounds per game
+    # total rebound percentage
+    # steals per game
+    # blocks per game
+    # turnovers per game
+    # turnovers forced per game
+    # field goals attempted per game
+    # field goals made per game
+    # field goal percentage
+    # 3pt attempted per game
+    # 3pt made per game
+    # 3pt percentage
+    # free throw attempts per game
+    # free throws made per game
+    # free throw percentage
+
+    # make a series of queries to get this data, then cache the model object, and make it expire every day
+
+    respond_to do |format|
+      format.html
+      format.json { render json: generate_teams_query_json }
+    end
+
+  end
+
   def show
     @team = NbaTeam.find_by_abbr(params[:abbr].downcase)
 
@@ -33,6 +74,14 @@ class NbaTeamsController < ApplicationController
 # CONFIGURATION
   def default_serializer_options
     { root: false }
+  end
+
+# JSON GENERATION
+  def generate_teams_query_json
+    Rails.cache.fetch "nba_teams_query_json", expires_in: 20.seconds do
+      sleep 10
+      {some_key: "some_value"}
+    end
   end
 
 end

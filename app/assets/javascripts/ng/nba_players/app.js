@@ -41,7 +41,7 @@ app.factory("playersApiFactory", [
 ]);
 
 app.controller("nba_players_controller", [
-  "$scope", "$http", "$filter", "playersApiFactory", function($scope, $http, $filter, playersApiFactory) {
+  "$scope", "$filter", "playersApiFactory", function($scope, $filter, playersApiFactory) {
     $scope.heading = "League Leaders";
     $scope.sortProperty = "points_per_game";
     $scope.sortDirection = true;

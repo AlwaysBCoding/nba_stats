@@ -36,7 +36,7 @@ app.factory "playersApiFactory", ["$http", ($http) ->
 ]
 
 # controllers
-app.controller "nba_players_controller", ["$scope", "$http", "$filter", "playersApiFactory", ($scope, $http, $filter, playersApiFactory) ->
+app.controller "nba_players_controller", ["$scope", "$filter", "playersApiFactory", ($scope, $filter, playersApiFactory) ->
 
   $scope.heading = "League Leaders"
   $scope.sortProperty = "points_per_game"
