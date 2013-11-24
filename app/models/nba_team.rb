@@ -52,7 +52,7 @@ class NbaTeam < ActiveRecord::Base
 
 # STATS QUERY METHODS
   def record
-    "#{won_games} - #{lost_games}"
+    "#{won_games.count} - #{lost_games.count}"
   end
 
   def pace
