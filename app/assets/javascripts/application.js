@@ -21,5 +21,8 @@
 //= require nba_teams
 //= require nba_players
 
+//= require ng/nba_teams/nba_teams_app
+//= require ng/nba_players/nba_players_app
+
 //=require foundation
 $(document).foundation();
